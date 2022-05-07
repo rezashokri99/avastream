@@ -1,0 +1,20 @@
+.filter_animate {
+    animation: counter-clockwise 2s ease-in-out forwards infinite;
+    display: inline-block;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.filter_animate:hover {
+    animation: none;
+}
+
+@keyframes counter-clockwise {
+    0% {
+        transform: translateX(0px) rotate(-50deg);
+    }
+
+    100% {
+        transform: translateX(0px) rotate(-360deg);
+    }
+}
