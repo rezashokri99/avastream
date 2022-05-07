@@ -3,6 +3,7 @@
 html,
 body {
   font-family: iranyekan;
+  background-color: #272829;
 }
 
 * {
@@ -18,6 +19,12 @@ body {
 .swiper-button-next, .swiper-button-prev {
   color: #fff !important;
   transition: color .2s ease-out;
+}
+
+@media (max-width: 640px){
+  .swiper-button-next, .swiper-button-prev {
+    display: none !important;
+  }
 }
 
 .swiper-button-next:hover , .swiper-button-prev:hover {

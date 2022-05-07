@@ -1,8 +1,33 @@
 import DesktopNavbarMenu from "./desktopNavbar";
 import MobileHumbergerMenu from "./mobileNavbar";
 import styles from "./navbarMenu.module.css";
+import { useState, useCallback, useEffect } from "react";
+
 
 const Navbar = ({ setIsOpenMobileMenu, setIsOpenPages, setIsOpenUserProfile, setIsOpenSearch, setIsOpenUserPagesDesktop, isOpenUserPagesDesktop }) => {
+
+
+    const [scrollState, setScrollState] = useState(false);
+
+    const onScroll = useCallback(event => {
+        const { scrollY } = window;
+
+        if (scrollY > 80) {
+            if(!scrollState){
+                setScrollState(() => true);
+            }
+        } else {
+            console.log(scrollState);
+            setScrollState(false);
+            if(scrollState){
+            }
+        }
+    }, []);
+
+    useEffect(() => {
+        //add eventlistener to window
+        window.addEventListener("scroll", onScroll, { passive: true });
+    });
 
     // هندلر دکمه همبرگر منو
     const openAndCloseMenu = () => {
@@ -17,18 +42,18 @@ const Navbar = ({ setIsOpenMobileMenu, setIsOpenPages, setIsOpenUserProfile, set
         setIsOpenMobileMenu(false)
         setIsOpenMobileMenu(false)
     }
-    
+
     // هندلر دکمه سرچ
     const openAndCloseSearchComponent = () => {
         setIsOpenSearch(true)
     }
 
-    
+
 
     return (
-        <div className="px-[15px] md:px-14 lg:px-24 z-10 rtl h-[70px] w-full bg-gray-orginal flex items-center justify-between">
+        <div className={`${scrollState && "fixed top-0"}  px-[15px] md:px-14 lg:px-24 z-10 rtl h-[70px] w-full bg-gray-orginal flex items-center justify-between`}>
             {/* همبرگر منو در موبایل */}
-            <MobileHumbergerMenu openAndCloseMenu={openAndCloseMenu} />            
+            <MobileHumbergerMenu openAndCloseMenu={openAndCloseMenu} />
             {/* همبرگر منو در موبایل */}
             <DesktopNavbarMenu isOpenUserPagesDesktop={isOpenUserPagesDesktop} setIsOpenUserPagesDesktop={setIsOpenUserPagesDesktop} />
 
