@@ -1,0 +1,14 @@
+.seriesContainer {
+    background-image: linear-gradient(to top, #202020, rgb(2 2 2 / 90%)), url(../../../../public/assets/images/parallax/best-series.jpg);
+}
+
+
+@media (min-width: 480px) {
+    .seriesContainer {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+    .filmName {
+        font-size: 18px;
+    }
+}

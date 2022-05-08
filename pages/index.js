@@ -1,6 +1,6 @@
 import Main from "../components/main";
 import HeaderContainer from "../components/header/headerContainer";
-
+import Footer from "../components/footer"
 
 export default function Home() {
   
@@ -10,6 +10,8 @@ export default function Home() {
       <HeaderContainer />
       {/* main container */}
       <Main />
+      {/* footer container */}
+      <Footer />
     </div>
   )
 }

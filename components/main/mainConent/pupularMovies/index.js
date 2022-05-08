@@ -13,34 +13,38 @@ SwiperCore.use([Navigation, Pagination])
 const PupularMovies = () => {
 
     const [countShowSlider, setCountShowSlider] = useState(2);
-
+    
+    // هندلر اسکرول
     const onScroll = useCallback(event => {
         const { innerWidth } = window;
-
+        
+        // اگر اسکرول از 1200 پیکسل اومد پایینتر ست استیت کن
         if (innerWidth > 1200) {
             setCountShowSlider(5)
+        // اگر اسکرول از 600 پیکسل اومد پایینتر ست استیت کن
         }else if(innerWidth > 600) {
             setCountShowSlider(3)
+
         }else {
             setCountShowSlider(2)
         }
     }, []);
 
     useEffect(() => {
-        //add eventlistener to window
+        // لستنر اسکرول
         window.addEventListener("scroll", onScroll, { passive: true });
     });
 
 
 
     return (
-        <div className="py-[50px] mx-[15px] md:px-10 lg:px-20 h-fit rtl text-right mb-48">
+        <div className="py-[50px] mx-[15px] md:px-10 lg:px-20 h-fit rtl text-right">
             <h2 className=" text-lg font-bold text-white pb-3 mb-7 border-b-4 border-b-red-orginal w-fit">فیلم های محبوب</h2>
             <Swiper
                 slidesPerView={countShowSlider}
                 spaceBetween={30}
                 dir="rtl"
-                loop={true}
+                loop={true} 
                 autoplay={{
                     delay: 4000,
                 }}
@@ -50,7 +54,7 @@ const PupularMovies = () => {
                     clickable: true,
                 }}
                 modules={[Autoplay, FreeMode, Pagination]}
-                className={styles.sliderContainer} 
+                className={`${styles.sliderContainer} select-none`}
             >
                 {/* 1 */}
                 <SwiperSlide>

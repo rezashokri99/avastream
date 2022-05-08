@@ -4,7 +4,9 @@ import MainContent from "./mainConent"
 const Main = () => {
     return (
         <>
+            {/* اسلایدر بالای ضفحه */}
             <HeaderSlider />
+            {/* main content */}
             <MainContent />
         </>
     );

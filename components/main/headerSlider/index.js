@@ -117,17 +117,6 @@ const HeaderSlider = () => {
       <div className={styles.backDropFilter}>
 
       </div>
-      {/* <Swiper
-        className="h-[600px] rtl"
-        navigation
-        pagination={{ clickable: true }}
-        spaceBetween={50}
-
-      >
-        <SwiperSlide><img className="absolute w-full h-[600px]" src="/assets\images\slider/slider1.jpg" /><span className="absolute">متن اسلاید شماره 1</span></SwiperSlide>
-        <SwiperSlide><img className="absolute w-full h-[600px]" src="/assets\images\slider/slider2.jpg" /><span className="absolute">متن اسلاید شماره 1</span></SwiperSlide>
-        <SwiperSlide><img className="absolute w-full h-[600px]" src="/assets\images\slider/slider3.jpg" /><span className="absolute">متن اسلاید شماره 1</span></SwiperSlide>
-      </Swiper> */}
     </div>
   );
 };
