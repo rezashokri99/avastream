@@ -2,15 +2,21 @@
 /* eslint-disable jsx-a11y/alt-text */
 import Link from "next/link";
 
-const MainTabs = ({ mainTabActive, setMainTabActive }) => {
+const MainTabs = ({ nameTitle, mainTabActive, setMainTabActive }) => {
     return (
         <div className="py-[50px] md:px-10 lg:px-20 rtl text-right">
-            {/* season tabs */}
-            <ul className="px-[15px] w-full h-[37px] mb-4 flex items-center">
-                <li><Link href="#"><a onClick={() => setMainTabActive("featured")} className={`${mainTabActive === "featured" ? "bg-red-orginal" : "hover:text-red-orginal"} transition ease-in-out duration-200 cursor-pointer text-white text-sm font-medium py-2 px-4`}>ویژه</a></Link></li>
-                <li><Link href="#"><a onClick={() => setMainTabActive("movies")} className={`${mainTabActive === "movies" ? "bg-red-orginal" : "hover:text-red-orginal"} transition ease-in-out duration-200 cursor-pointer  text-white text-sm font-medium py-2 px-4`}>فیلم ها</a></Link></li>
-                <li><Link href="#"><a onClick={() => setMainTabActive("shows")} className={`${mainTabActive === "shows" ? "bg-red-orginal" : "hover:text-red-orginal"} transition ease-in-out duration-200 cursor-pointer  text-white text-sm font-medium py-2 px-4`}>سریال ها</a></Link></li>
-            </ul>
+
+            {
+                nameTitle ?
+
+                    <h2 className="text-lg font-bold text-white pb-3 mb-7 border-b-4 border-b-red-orginal w-fit">{nameTitle}</h2> :
+
+                    <ul className="px-[15px] w-full h-[37px] mb-4 flex items-center">
+                        <li><Link href="#"><a onClick={() => setMainTabActive("featured")} className={`${mainTabActive === "featured" ? "bg-red-orginal" : "hover:text-red-orginal"} transition ease-in-out duration-200 cursor-pointer text-white text-sm font-medium py-2 px-4`}>ویژه</a></Link></li>
+                        <li><Link href="#"><a onClick={() => setMainTabActive("movies")} className={`${mainTabActive === "movies" ? "bg-red-orginal" : "hover:text-red-orginal"} transition ease-in-out duration-200 cursor-pointer  text-white text-sm font-medium py-2 px-4`}>فیلم ها</a></Link></li>
+                        <li><Link href="#"><a onClick={() => setMainTabActive("shows")} className={`${mainTabActive === "shows" ? "bg-red-orginal" : "hover:text-red-orginal"} transition ease-in-out duration-200 cursor-pointer  text-white text-sm font-medium py-2 px-4`}>سریال ها</a></Link></li>
+                    </ul>
+            }
 
             {/* tab content */}
             <div className="rtl text-right grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-y-8 text-white">
@@ -60,7 +66,7 @@ const MainTabs = ({ mainTabActive, setMainTabActive }) => {
                         </div>
                     </div>
                 </div>
-                
+
                 {/* 3 */}
                 <div className="px-[15px]">
                     <Link href="#">
@@ -152,8 +158,8 @@ const MainTabs = ({ mainTabActive, setMainTabActive }) => {
                         </div>
                     </div>
                 </div>
-                
-    
+
+
 
             </div>
         </div>

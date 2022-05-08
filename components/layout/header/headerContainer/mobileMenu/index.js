@@ -12,7 +12,7 @@ const MobileMenu = ({ isOpenMobileMenu, isOpenPages, setIsOpenPages }) => {
                 </Link>
             </li>
             <li className="pr-3 border-t border-gray-300">
-                <Link href="#">
+                <Link href="/movies">
                     <a className="block w-full py-[10px] font-bold text-slate-333">فیلم ها</a>
                 </Link>
             </li>

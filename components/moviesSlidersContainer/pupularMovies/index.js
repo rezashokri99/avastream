@@ -6,11 +6,14 @@ import SwiperCore, { FreeMode, Autoplay, Navigation, Pagination } from "swiper";
 import Link from "next/link";
 import { useState, useCallback, useEffect } from "react";
 import styles from "./pupularMovies.module.css";
+import { useRouter } from "next/router";
 
 
 SwiperCore.use([Navigation, Pagination])
 
-const PupularMovies = () => {
+const PupularMovies = ({nameTitle}) => {
+    
+    const location = useRouter();
 
     const [countShowSlider, setCountShowSlider] = useState(2);
     
@@ -39,7 +42,8 @@ const PupularMovies = () => {
 
     return (
         <div className="py-[50px] mx-[15px] md:px-10 lg:px-20 h-fit rtl text-right">
-            <h2 className=" text-lg font-bold text-white pb-3 mb-7 border-b-4 border-b-red-orginal w-fit">فیلم های محبوب</h2>
+            <h2 className=" text-lg font-bold text-white pb-3 mb-7 border-b-4 border-b-red-orginal w-fit">{nameTitle}</h2>
+            
             <Swiper
                 slidesPerView={countShowSlider}
                 spaceBetween={30}

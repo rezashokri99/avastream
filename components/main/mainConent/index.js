@@ -1,8 +1,8 @@
 import { useState } from "react";
-import BestSeries from "./bestSeries";
-import MainTabs from "./mainTabs/MainTabs";
-import PupularMovies from "./pupularMovies";
-import TopTenMovies from "./topTenMovies";
+import BestSeries from "../../moviesSlidersContainer/bestSeries";
+import MainTabs from "../../moviesSlidersContainer/mainTabs/MainTabs";
+import PupularMovies from "../../moviesSlidersContainer/pupularMovies";
+import TopTenMovies from "../../moviesSlidersContainer/topTenMovies";
 
 const MainContent = () => {
 
@@ -12,8 +12,8 @@ const MainContent = () => {
     return (
         <div className="pt-[50px]">
             <MainTabs mainTabActive={mainTabActive} setMainTabActive={setMainTabActive} />
-            <PupularMovies />
-            <TopTenMovies />
+            <PupularMovies nameTitle={"فیلم های محبوب"} />
+            <TopTenMovies nameTitle={"ده فیلم برتر"} />
             <BestSeries seriesTabActive={seriesTabActive} setSeriesTabActive={setSeriesTabActive} />
         </div>
     );

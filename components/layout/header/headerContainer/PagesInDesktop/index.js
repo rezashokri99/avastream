@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const PagesInDesktop = ({ isOpenUserPagesDesktop }) => {
     return (
-        <ul className={`${isOpenUserPagesDesktop ? "h-52" : "h-0"} text-slate-333 absolute top-[70px] lg:block hidden w-56 rounded-sm transition-[height] ease-in duration-500 overflow-hidden rtl ml-[570px] xl:ml-[650px] bg-fuchsia-100`}>
+        <ul className={`${isOpenUserPagesDesktop ? "h-52" : "h-0"} z-30 text-slate-333 absolute top-[70px] lg:block hidden w-56 rounded-sm transition-[height] ease-in duration-500 overflow-hidden rtl ml-[570px] xl:ml-[650px] bg-white`}>
             <li className="pr-4 font-bold border-t border-gray-300">
                 <Link href={"#"}>
                     <a className=" block py-2">درباره ما</a>
