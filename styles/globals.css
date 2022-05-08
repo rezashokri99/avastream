@@ -16,6 +16,10 @@ body {
   direction: rtl;
 }
 
+.ltr {
+  direction: ltr;
+}
+
 .swiper-button-next, .swiper-button-prev {
   color: #fff !important;
   transition: color .2s ease-out;

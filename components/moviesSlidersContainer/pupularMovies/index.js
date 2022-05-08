@@ -63,14 +63,14 @@ const PupularMovies = ({nameTitle}) => {
                 {/* 1 */}
                 <SwiperSlide>
                     <div className="">
-                        <Link href="#">
+                        <Link href={`/movies/film`}>
                             <a className="-mb-[8px] w-full inline-block overflow-hidden relative">
                                 <img className="hover:scale-110 transition ease-in-out duration-300 overflow-hidden " src="assets\images\popular\01.jpg" alt="movie" />
                             </a>
                         </Link>
                         <div className="text-white">
                             <h2 className="mt-3 mb-1 h-fit">
-                                <Link href="#">
+                                <Link href={`/movies/film`}>
                                     <a className="hover:text-red-orginal transition ease-in-out duration-200 cursor-pointer sm:text-lg font-bold tracking-wide ">
                                         IRON DOOR
                                     </a>
@@ -88,14 +88,14 @@ const PupularMovies = ({nameTitle}) => {
                 {/* 2 */}
                 <SwiperSlide>
                     <div className="">
-                        <Link href="#">
+                        <Link href={`/movies/film`}>
                             <a className="-mb-[8px] w-full inline-block overflow-hidden relative">
                                 <img className="hover:scale-110 transition ease-in-out duration-300 overflow-hidden " src="assets\images\popular\02.jpg" alt="movie" />
                             </a>
                         </Link>
                         <div className="text-white">
                             <h2 className="mt-3 mb-1 h-fit">
-                                <Link href="#">
+                                <Link href={`/movies/film`}>
                                     <a className="hover:text-red-orginal transition ease-in-out duration-200 cursor-pointer sm:text-lg font-bold tracking-wide ">
                                         IRON DOOR
                                     </a>
@@ -112,14 +112,14 @@ const PupularMovies = ({nameTitle}) => {
                 {/* 3 */}
                 <SwiperSlide>
                     <div className="">
-                        <Link href="#">
+                        <Link href={`/movies/film`}>
                             <a className="-mb-[8px] w-full inline-block overflow-hidden relative">
                                 <img className="hover:scale-110 transition ease-in-out duration-300 overflow-hidden " src="assets\images\popular\03.jpg" alt="movie" />
                             </a>
                         </Link>
                         <div className="text-white">
                             <h2 className="mt-3 mb-1 h-fit">
-                                <Link href="#">
+                                <Link href={`/movies/film`}>
                                     <a className="hover:text-red-orginal transition ease-in-out duration-200 cursor-pointer sm:text-lg font-bold tracking-wide ">
                                         IRON DOOR
                                     </a>
@@ -136,14 +136,14 @@ const PupularMovies = ({nameTitle}) => {
                 {/* 4 */}
                 <SwiperSlide>
                     <div className="">
-                        <Link href="#">
+                        <Link href={`/movies/film`}>
                             <a className="-mb-[8px] w-full inline-block overflow-hidden relative">
                                 <img className="hover:scale-110 transition ease-in-out duration-300 overflow-hidden " src="assets\images\popular\04.jpg" alt="movie" />
                             </a>
                         </Link>
                         <div className="text-white">
                             <h2 className="mt-3 mb-1 h-fit">
-                                <Link href="#">
+                                <Link href={`/movies/film`}>
                                     <a className="hover:text-red-orginal transition ease-in-out duration-200 cursor-pointer sm:text-lg font-bold tracking-wide ">
                                         IRON DOOR
                                     </a>
@@ -160,14 +160,14 @@ const PupularMovies = ({nameTitle}) => {
                 {/* 5 */}
                 <SwiperSlide>
                     <div className="">
-                        <Link href="#">
+                        <Link href={`/movies/film`}>
                             <a className="-mb-[8px] w-full inline-block overflow-hidden relative">
                                 <img className="hover:scale-110 transition ease-in-out duration-300 overflow-hidden " src="assets\images\popular\05.jpg" alt="movie" />
                             </a>
                         </Link>
                         <div className="text-white">
                             <h2 className="mt-3 mb-1 h-fit">
-                                <Link href="#">
+                                <Link href={`/movies/film`}>
                                     <a className="hover:text-red-orginal transition ease-in-out duration-200 cursor-pointer sm:text-lg font-bold tracking-wide ">
                                         IRON DOOR
                                     </a>
@@ -184,14 +184,14 @@ const PupularMovies = ({nameTitle}) => {
                 {/* 6 */}
                 <SwiperSlide>
                     <div className="">
-                        <Link href="#">
+                        <Link href={`/movies/film`}>
                             <a className="-mb-[8px] w-full inline-block overflow-hidden relative">
                                 <img className="hover:scale-110 transition ease-in-out duration-300 overflow-hidden " src="assets\images\popular\06.jpg" alt="movie" />
                             </a>
                         </Link>
                         <div className="text-white">
                             <h2 className="mt-3 mb-1 h-fit">
-                                <Link href="#">
+                                <Link href={`/movies/film`}>
                                     <a className="hover:text-red-orginal transition ease-in-out duration-200 cursor-pointer sm:text-lg font-bold tracking-wide ">
                                         IRON DOOR
                                     </a>
@@ -208,14 +208,14 @@ const PupularMovies = ({nameTitle}) => {
                 {/* 7 */}
                 <SwiperSlide>
                     <div className="">
-                        <Link href="#">
+                        <Link href={`/movies/film`}>
                             <a className="-mb-[8px] w-full inline-block overflow-hidden relative">
                                 <img className="hover:scale-110 transition ease-in-out duration-300 overflow-hidden " src="assets\images\popular\07.jpg" alt="movie" />
                             </a>
                         </Link>
                         <div className="text-white">
                             <h2 className="mt-3 mb-1 h-fit">
-                                <Link href="#">
+                                <Link href={`/movies/film`}>
                                     <a className="hover:text-red-orginal transition ease-in-out duration-200 cursor-pointer sm:text-lg font-bold tracking-wide ">
                                         IRON DOOR
                                     </a>

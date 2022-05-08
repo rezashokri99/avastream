@@ -23,14 +23,14 @@ const MainTabs = ({ nameTitle, mainTabActive, setMainTabActive }) => {
 
                 {/* 1 */}
                 <div className="px-[15px]">
-                    <Link href="#">
+                    <Link href={`/movies/film`}>
                         <a className="-mb-[8px] w-full inline-block overflow-hidden relative">
                             <img className="hover:scale-110 transition ease-in-out duration-300 overflow-hidden " src="assets\images\latest-aditions/01.jpg" alt="movie" />
                         </a>
                     </Link>
                     <div>
                         <h2 className="mt-3 mb-1 h-fit">
-                            <Link href="#">
+                            <Link href={`/movies/film`}>
                                 <a className="hover:text-red-orginal transition ease-in-out duration-200 cursor-pointer sm:text-lg font-bold tracking-wide ">
                                     IRON DOOR
                                 </a>
@@ -46,14 +46,14 @@ const MainTabs = ({ nameTitle, mainTabActive, setMainTabActive }) => {
 
                 {/* 2 */}
                 <div className="px-[15px]">
-                    <Link href="#">
+                    <Link href={`/movies/film`}>
                         <a className="-mb-[8px] w-full inline-block overflow-hidden relative">
                             <img className="hover:scale-110 transition ease-in-out duration-300 overflow-hidden " src="assets\images\latest-aditions/02.jpg" alt="movie" />
                         </a>
                     </Link>
                     <div>
                         <h2 className="mt-3 mb-1 h-fit">
-                            <Link href="#">
+                            <Link href={`/movies/film`}>
                                 <a className="hover:text-red-orginal transition ease-in-out duration-200 cursor-pointer sm:text-lg font-bold tracking-wide ">
                                     THE EARTH
                                 </a>
@@ -69,14 +69,14 @@ const MainTabs = ({ nameTitle, mainTabActive, setMainTabActive }) => {
 
                 {/* 3 */}
                 <div className="px-[15px]">
-                    <Link href="#">
+                    <Link href={`/movies/film`}>
                         <a className="-mb-[8px] w-full inline-block overflow-hidden relative">
                             <img className="hover:scale-110 transition ease-in-out duration-300 overflow-hidden " src="assets\images\latest-aditions/03.jpg" alt="movie" />
                         </a>
                     </Link>
                     <div>
                         <h2 className="mt-3 mb-1 h-fit">
-                            <Link href="#">
+                            <Link href={`/movies/film`}>
                                 <a className="hover:text-red-orginal transition ease-in-out duration-200 cursor-pointer sm:text-lg font-bold tracking-wide ">
                                     CITY DREAMS
                                 </a>
@@ -92,14 +92,14 @@ const MainTabs = ({ nameTitle, mainTabActive, setMainTabActive }) => {
 
                 {/* 4 */}
                 <div className="px-[15px]">
-                    <Link href="#">
+                    <Link href={`/movies/film`}>
                         <a className="-mb-[8px] w-full inline-block overflow-hidden relative">
                             <img className="hover:scale-110 transition ease-in-out duration-300 overflow-hidden " src="assets\images\latest-aditions/04.jpg" alt="movie" />
                         </a>
                     </Link>
                     <div>
                         <h2 className="mt-3 mb-1 h-fit">
-                            <Link href="#">
+                            <Link href={`/movies/film`}>
                                 <a className="hover:text-red-orginal transition ease-in-out duration-200 cursor-pointer sm:text-lg font-bold tracking-wide ">
                                     DIVINE HAND
                                 </a>
@@ -115,14 +115,14 @@ const MainTabs = ({ nameTitle, mainTabActive, setMainTabActive }) => {
 
                 {/* 5 */}
                 <div className="px-[15px]">
-                    <Link href="#">
+                    <Link href={`/movies/film`}>
                         <a className="-mb-[8px] w-full inline-block overflow-hidden relative">
                             <img className="hover:scale-110 transition ease-in-out duration-300 overflow-hidden " src="assets\images\latest-aditions/05.jpg" alt="movie" />
                         </a>
                     </Link>
                     <div>
                         <h2 className="mt-3 mb-1 h-fit">
-                            <Link href="#">
+                            <Link href={`/movies/film`}>
                                 <a className="hover:text-red-orginal transition ease-in-out duration-200 cursor-pointer sm:text-lg font-bold tracking-wide ">
                                     DECEIVED
                                 </a>
@@ -138,14 +138,14 @@ const MainTabs = ({ nameTitle, mainTabActive, setMainTabActive }) => {
 
                 {/* 6 */}
                 <div className="px-[15px]">
-                    <Link href="#">
+                    <Link href={`/movies/film`}>
                         <a className="-mb-[8px] w-full inline-block overflow-hidden relative">
                             <img className="hover:scale-110 transition ease-in-out duration-300 overflow-hidden " src="assets\images\latest-aditions/06.jpg" alt="movie" />
                         </a>
                     </Link>
                     <div>
                         <h2 className="mt-3 mb-1 h-fit">
-                            <Link href="#">
+                            <Link href={`/movies/film`}>
                                 <a className="hover:text-red-orginal transition ease-in-out duration-200 cursor-pointer sm:text-lg font-bold tracking-wide ">
                                     HEAVEN IS NOW
                                 </a>
