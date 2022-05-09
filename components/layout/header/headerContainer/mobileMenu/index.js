@@ -7,7 +7,7 @@ const MobileMenu = ({ isOpenMobileMenu, isOpenPages, setIsOpenPages }) => {
     return (
         <ul className={`${isOpenMobileMenu ? isOpenPages ? "h-[325px]" : "h-[135px]" : "h-0"} lg:hidden rounded-sm transition-[height] ease-in duration-500 overflow-hidden rtl mx-[15px] bg-white`}>
             <li className="pr-3 border-t border-gray-300">
-                <Link href="#">
+                <Link href="/">
                     <a className="block w-full py-[10px] font-bold text-slate-333">خانه</a>
                 </Link>
             </li>

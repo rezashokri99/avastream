@@ -20,7 +20,7 @@ const DesktopNavbarMenu = ({ isOpenUserPagesDesktop, setIsOpenUserPagesDesktop }
                 </Link>
             </li>
             <li className="px-5 border-r border-gray-500">
-                <Link href="#">
+                <Link href="/">
                     <a className="hover:text-red-orginal transition ease-in-out duration-200 cursor-pointer font-bold ">خانه</a>
                 </Link>
             </li>

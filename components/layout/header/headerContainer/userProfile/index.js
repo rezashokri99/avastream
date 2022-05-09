@@ -9,12 +9,12 @@ const UserProfile = ({ isOpenUserProfile }) => {
                 </Link>
             </li>
             <li className="border-t border-gray-300">
-                <Link href="#">
+                <Link href="/auth">
                     <a className="block w-full py-[15px] px-5 font-bold text-slate-333">ورود</a>
                 </Link>
             </li>
             <li className="border-t border-gray-300">
-                <Link href="#">
+                <Link href="/auth">
                     <a className="block w-full py-[15px] px-5 font-bold text-slate-333">ثبت نام</a>
                 </Link>
             </li>

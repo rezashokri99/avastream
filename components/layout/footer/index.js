@@ -4,7 +4,7 @@ import MainFooter from "./mainFooter";
 
 const Footer = () => {
     return (
-        <div className="md:px-10 lg:px-20">
+        <div className="md:px-10 lg:px-20 bg-gray-orginal">
             {/* main Footer */}
             <MainFooter />
             {/* copyright Footer */}

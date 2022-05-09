@@ -3,7 +3,8 @@ import { FaCity, FaPlay } from "react-icons/fa";
 import styles from "./moviePage.module.css";
 
 
-const MoviePage = () => {
+const MoviePage = ({filmName}) => {
+    console.log(filmName);
     return (
         <div className="my-[50px] py-[50px] md:px-14 lg:px-24 rtl text-right px-[15px] grid grid-cols-1 md:grid-cols-4 md:gap-x-6">
             {/* عکس قیلم */}
@@ -126,6 +127,17 @@ const MoviePage = () => {
 
         </div>
     );
+}
+
+
+export const getServerSideProps = (context) => {
+    const filmName = context.params.slug;
+
+    return {
+        props : {
+            filmName
+        }
+    }
 }
 
 export default MoviePage;
