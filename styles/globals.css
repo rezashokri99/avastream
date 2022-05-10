@@ -45,3 +45,8 @@ body {
   border-radius: 5px !important;
   
 }
+
+
+.Toastify__toast-body {
+  font-family: iranyekan !important;
+}

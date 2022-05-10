@@ -20,12 +20,12 @@ const PagesInDesktop = ({ isOpenUserPagesDesktop }) => {
                 </Link>
             </li>
             <li className="pr-4 font-bold border-t border-gray-300">
-                <Link href={"/auth"}>
+                <Link href={"/auth/login"}>
                     <a className=" block py-2">ورود</a>
                 </Link>
             </li>
             <li className="pr-4 font-bold border-t border-gray-300">
-                <Link href={"/auth"}>
+                <Link href={"/auth/signup"}>
                     <a className=" block py-2">ثبت نام</a>
                 </Link>
             </li>

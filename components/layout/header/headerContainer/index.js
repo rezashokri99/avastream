@@ -22,7 +22,7 @@ const HeaderContainer = () => {
     
     
     return (
-        <>
+        <div className="relative">
             {/* کامپوننت سرچ */}
             <MobileSearch isOpenSearch={isOpenSearch} setIsOpenSearch={setIsOpenSearch}/>
             {/* لوگو */}
@@ -30,10 +30,10 @@ const HeaderContainer = () => {
             {/* نوبار و منو در دسکتاپ */}
             <Navbar setIsOpenMobileMenu={setIsOpenMobileMenu} setIsOpenPages={setIsOpenPages} setIsOpenUserProfile={setIsOpenUserProfile} setIsOpenSearch={setIsOpenSearch} isOpenUserPagesDesktop={isOpenUserPagesDesktop} setIsOpenUserPagesDesktop={setIsOpenUserPagesDesktop} />
             {/* منو در موبایل */}
-            <MobileMenu isOpenMobileMenu={isOpenMobileMenu} isOpenPages={isOpenPages} setIsOpenPages={setIsOpenPages} />
+            <MobileMenu isOpenMobileMenu={isOpenMobileMenu} setIsOpenMobileMenu={setIsOpenMobileMenu} isOpenPages={isOpenPages} setIsOpenPages={setIsOpenPages} />
             {/* مودال دکمه پروفایل و خروج */}
-            <UserProfile isOpenUserProfile={isOpenUserProfile} />
-        </>
+            <UserProfile isOpenUserProfile={isOpenUserProfile} setIsOpenUserProfile={setIsOpenUserProfile} />
+        </div>
     );
 }
 

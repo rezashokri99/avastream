@@ -1,7 +1,8 @@
-import { useState } from "react";
-
 /* eslint-disable @next/next/no-img-element */
-const LoginForm = ({ setStatus }) => {
+import { useState } from "react";
+import Link from "next/link";
+
+const LoginForm = () => {
 
     // استیت مقادیر ورودی ها
     const [inputData, setInputData] = useState({
@@ -124,7 +125,7 @@ const LoginForm = ({ setStatus }) => {
 
 
     return (
-        <div className="py-[50px] sm:w-[540px] md:w-[720px] lg:w-[960px] xl:w-[1140px] grid lg:grid-cols-2 justify-center mx-auto text-white text-right rtl">
+        <div className="mx-[15px] py-[50px] sm:w-[540px] sm:mx-auto md:w-[720px] lg:w-[960px] xl:w-[1140px] grid lg:grid-cols-2 justify-center  text-white text-right rtl">
             <div className="mb-[50px] lg:col-span-2">
                 <h2 className="mb-6 text-[32px] font-bold text-center">خوش برگشتی !</h2>
                 <p className="text-sm mb-4 text-center font-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
@@ -152,7 +153,9 @@ const LoginForm = ({ setStatus }) => {
                 <div>
                     <p className="text-xs font-medium text-center cursor-default">
                         حساب کاربری ندارید؟
-                        <span onClick={() => setStatus(false)} className="hover:text-red-orginal transition ease-in-out duration-200 cursor-pointer"> اینجا ثبت نام کنید!</span>
+                        <Link href="/auth/signup">
+                            <span className="hover:text-red-orginal transition ease-in-out duration-200 cursor-pointer"> اینجا ثبت نام کنید!</span>
+                        </Link>
                     </p>
                 </div>
 
