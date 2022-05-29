@@ -43,7 +43,7 @@ const RegisterForm = () => {
 
     // // استیت اوکی نبودن اینپوت ها موقع زدن دکمه ثبت نام
     // const [notOkey , setNotOkey] = useState(false);
-    
+
 
     // هندلر تایپ در اینپوت ها
     const changeInputValueHandler = (e) => {
@@ -58,23 +58,32 @@ const RegisterForm = () => {
     // هندلر دکمه ثبت نام
     const submitHandler = (e) => {
         e.preventDefault();
-        if (inputData.email === "" || inputData.username === "" || inputData.password === "" || inputData.confirmpassword === "" ) {
+        if (inputData.email === "" || inputData.username === "" || inputData.password === "" || inputData.confirmpassword === "") {
             toast.error("مقادیر وارد شده معتبر نمی باشند",)
 
-        }else if(invalidate.email.includeEmailValid === true || invalidate.username.lessThanFiveLetters === true || invalidate.username.notEnglish === true || invalidate.password.lessThanSixLetters === true || invalidate.confirmPassword.lessThanSixLetters === true || invalidate.confirmPassword.notMatchWithPassword === true) {
+        } else if (invalidate.email.includeEmailValid === true || invalidate.username.lessThanFiveLetters === true || invalidate.username.notEnglish === true || invalidate.password.lessThanSixLetters === true || invalidate.confirmPassword.lessThanSixLetters === true || invalidate.confirmPassword.notMatchWithPassword === true) {
             toast.error("مقادیر وارد شده معتبر نمی باشند")
-        }else {
-            
-            axios.post("/api/user", inputData)
-                .then(res => toast.success(`${inputData.username} .ثبت نام با موفقیت انجام شد`))
+        } else {
+
+            axios.post("/api/auth/register", inputData)
+                .then(res => {
+                    console.log(res);
+                    toast.success(`${inputData.username} .ثبت نام با موفقیت انجام شد`);
+                    setInputData({
+                        email: "",
+                        username: "",
+                        password: "",
+                        confirmpassword: ""
+                    })
+                })
                 .catch(err => {
                     if (err.response) {
                         toast.error(err.response.data.error)
-                    }else {
+                    } else {
                         toast.error("مشکلی رخ داده است!")
                     }
                 })
-            
+
         }
     }
 
@@ -184,7 +193,7 @@ const RegisterForm = () => {
                     isOkey: false
                 }
             })
-        }else if (value === inputData.confirmpassword) {
+        } else if (value === inputData.confirmpassword) {
             setInvalidate({
                 ...invalidate,
                 confirmPassword: {
@@ -198,7 +207,7 @@ const RegisterForm = () => {
                     isOkey: true
                 }
             })
-        }else if (value !== inputData.confirmpassword) {
+        } else if (value !== inputData.confirmpassword) {
             setInvalidate({
                 ...invalidate,
                 confirmPassword: {
@@ -247,7 +256,7 @@ const RegisterForm = () => {
                     isOkey: false
                 }
             })
-        }else if (value !== inputData.password) {
+        } else if (value !== inputData.password) {
             setInvalidate({
                 ...invalidate,
                 confirmPassword: {
@@ -301,7 +310,7 @@ const RegisterForm = () => {
                 <div className="mb-10 flex flex-col lg:col-span-1">
                     <label className="mb-2">تکرار رمز عبور</label>
                     <input onBlur={confirmPasswordValidateHandler} onChange={changeInputValueHandler} value={inputData.confirmpassword} name="confirmpassword" className={`${invalidate.confirmPassword.notEmpty === true || invalidate.confirmPassword.lessThanSixLetters === true || invalidate.confirmPassword.notMatchWithPassword === true ? "border-red-600" : invalidate.confirmPassword.isOkey ? "border-sky-500" : "border-gray-border"} focus:bg-white focus:border-red-orginal text-gray-text text-sm font-medium py-[5px] text-left px-5 h-[50px] bg-transparent outline-none border  `} type="password" />
-                    <span className="text-red-600 text-sm">{invalidate.confirmPassword.notEmpty === true ? "فیلد تکرار رمز عبور نباید خالی باشد." : invalidate.confirmPassword.lessThanSixLetters === true ? "تعداد کلمات تکرار رمز عبور نباید از شش حرف کمتر باشه" : invalidate.confirmPassword.notMatchWithPassword === true ? "تکرار رمز عبور نباید با رمز عبور یکسان نیست." : "" }</span>
+                    <span className="text-red-600 text-sm">{invalidate.confirmPassword.notEmpty === true ? "فیلد تکرار رمز عبور نباید خالی باشد." : invalidate.confirmPassword.lessThanSixLetters === true ? "تعداد کلمات تکرار رمز عبور نباید از شش حرف کمتر باشه" : invalidate.confirmPassword.notMatchWithPassword === true ? "تکرار رمز عبور نباید با رمز عبور یکسان نیست." : ""}</span>
                 </div>
                 {/* {
                     notOkey && <span className="mb-2 text-red-600 text-sm text-center lg:col-span-2">مقادیر به درستی وارد نشده اند</span>
@@ -311,7 +320,7 @@ const RegisterForm = () => {
                 </div>
 
                 <div className="lg:col-span-2">
-                <p className="text-xs font-medium text-center cursor-default">
+                    <p className="text-xs font-medium text-center cursor-default">
                         حساب کاربری دارید؟
                         <Link href="/auth/login">
                             <span className="hover:text-red-orginal transition ease-in-out duration-200 cursor-pointer">از اینجا وارد شوید</span>

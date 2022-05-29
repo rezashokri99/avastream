@@ -8,5 +8,13 @@ const userSchema = new Schema({
     password : String,
     created : {type:Date , default:Date.now},
 })
+userSchema.set('toJSON',{gettes:true})
+userSchema.options.toJSON.transform = (doc, ret) => {
+    const obj = {...ret}
+    // 
+    delete obj._id
+    delete obj.__v
+    return obj
+}
 
-module.exports = mongoose.model("User" , userSchema)
+module.exports = mongoose.models.User || mongoose.model("User" , userSchema)

@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState } from "react";
 import Link from "next/link";
+import axios from "axios";
+
 
 const LoginForm = () => {
 
@@ -38,6 +40,9 @@ const LoginForm = () => {
     // هندلر دکمه ثبت نام
     const submitHandler = (e) => {
         e.preventDefault();
+        axios.post("/api/auth/login", inputData)
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err))
     }
 
     // اعتبارسنجی نام کاربری
