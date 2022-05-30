@@ -2,9 +2,15 @@
 import { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
+import { toast } from "react-toastify";
+import styles from "./login.module.css";
+import { useContext } from "react";
+import { AuthContext } from "../../../store/auth";
 
 
 const LoginForm = () => {
+
+    const { setAuthNewState } = useContext(AuthContext);
 
     // استیت مقادیر ورودی ها
     const [inputData, setInputData] = useState({
@@ -40,9 +46,39 @@ const LoginForm = () => {
     // هندلر دکمه ثبت نام
     const submitHandler = (e) => {
         e.preventDefault();
-        axios.post("/api/auth/login", inputData)
-            .then((res) => console.log(res))
-            .catch((err) => console.log(err))
+
+
+        if (inputData.username === "" || inputData.password === "") {
+            toast.error("مقادیر وارد شده معتبر نمی باشند",)
+
+        } else if (invalidate.username.lessThanFiveLetters === true || invalidate.username.notEnglish === true || invalidate.password.lessThanSixLetters === true) {
+            toast.error("مقادیر وارد شده معتبر نمی باشند")
+        } else {
+
+            axios.post("/api/auth/login", inputData)
+                .then(res => {
+                    axios.get("/api/auth/user")
+                        .then((res) => {
+                            if (res.data.token) {
+                                setAuthNewState({ token: res.data.token })
+                                toast.success("شما با موفقیت وارد شدید!");
+                                setInputData({
+                                    username: "",
+                                    password: ""
+                                })
+                            }
+                        })
+                        .catch((err) => console.log(err))
+                })
+                .catch((err) => {
+                    if (err.response) {
+                        toast.error(err.response.data.error)
+                    } else {
+                        toast.error("مشکلی رخ داده است!")
+                    }
+                })
+        }
+
     }
 
     // اعتبارسنجی نام کاربری
@@ -116,7 +152,7 @@ const LoginForm = () => {
                     isOkey: false
                 }
             })
-        }else {
+        } else {
             setInvalidate({
                 ...invalidate,
                 password: {
@@ -136,7 +172,7 @@ const LoginForm = () => {
                 <p className="text-sm mb-4 text-center font-light">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
             </div>
 
-            <form onSubmit={submitHandler}  className="mb-5 lg:col-span-1 lg:mt-4">
+            <form onSubmit={submitHandler} className="mb-5 lg:col-span-1 lg:mt-4">
 
                 {/* نام کاربری */}
                 <div className="mb-4 flex flex-col">
@@ -152,7 +188,11 @@ const LoginForm = () => {
                 </div>
 
                 <div className="mb-4">
-                    <button type="submit" className="w-full py-[10px] px-5 h-[50px] bg-red-orginal flex items-center justify-center text-xl cursor-pointer ">ورود</button>
+                    <button type="submit" className={`${styles.btnHover} w-full py-[10px] px-5 md:px-[30px] h-[50px] bg-red-orginal text-white flex justify-center text-xl cursor-pointer `}>
+                        <p className="z-10 flex items-center">
+                            ورود
+                        </p>
+                    </button>
                 </div>
 
                 <div>

@@ -1,0 +1,12 @@
+.btnHover {
+    position: relative;
+    transition: all .3s linear;
+}
+
+.btnHover:hover {
+    background-color: #ff0000;
+}
+
+.btnHover:hover .textHover {
+    color: #FFF;
+}

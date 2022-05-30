@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import Link from "next/link";
 import { toast } from "react-toastify";
+import styles from "./register.module.css";
 
 
 const RegisterForm = () => {
@@ -316,7 +317,11 @@ const RegisterForm = () => {
                     notOkey && <span className="mb-2 text-red-600 text-sm text-center lg:col-span-2">مقادیر به درستی وارد نشده اند</span>
                 } */}
                 <div className="mb-4 lg:col-span-2">
-                    <button type="submit" className="w-full py-[10px] px-5 h-[50px] bg-red-orginal flex items-center justify-center text-xl cursor-pointer ">ثبت نام</button>
+                    <button type="submit" className={`${styles.btnHover} w-full py-[10px] px-5 md:px-[30px] h-[50px] bg-red-orginal text-white flex justify-center text-xl cursor-pointer `}>
+                        <p className="z-10 flex items-center">
+                            ثبت نام
+                        </p>
+                    </button>
                 </div>
 
                 <div className="lg:col-span-2">

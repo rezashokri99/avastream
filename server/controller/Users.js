@@ -1,5 +1,5 @@
 const User = require("../model/user");
-const { hashPassword, verifyPassword } = require("../middleware/authentication");
+const { hashPassword, verifyPassword, createToken } = require("../middleware/authentication");
 
 
 const CreateUser = async ({ username, password, email }) => {
@@ -18,7 +18,7 @@ const CreateUser = async ({ username, password, email }) => {
 
     try {
       const user = await User.create(values);
-      const  { email , created} = checkExistingUsername || checkExistingEmail;
+      const { email, created } = checkExistingUsername || checkExistingEmail;
       const data = { username, email, created };
       return { data, status: "SUCCESS" };
     } catch (err) {
@@ -42,10 +42,12 @@ const UserAuthentication = async ({ username, password }) => {
         error: "نام کاربری ویا رمزعبور وارد شده اشتباه است.",
         status: "ERROR",
       };
-    }else{
-        const  { email , created} = checkExistingUser;
-        const data = {username , email , created}
-        return { data, status: "SUCCESS" };
+    } else {
+      const { email, created } = checkExistingUser;
+      const token = createToken({ username, password, email, created })
+
+      const user = { username, email, created }
+      return { token, user, status: "SUCCESS" };
     }
   }
 
