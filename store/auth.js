@@ -15,7 +15,13 @@ const AuthProvider = ({ children }) => {
             .then((res) => {
                 setFetchCompleted(true);
                 if (res.data.token) {
-                    setAuthState({ token: res.data.token });
+                    const user = JSON.parse(window.localStorage.getItem("user"));
+                    axios.get(`/api/user/${user.username}`)
+                        .then((response) => {
+                            setAuthState({ token: res.data.token, user: response.data });
+                            window.localStorage.setItem("user", JSON.stringify(response.data))
+                        })
+                        .catch((err) => console.log(err))
                 }
             })
             .catch((err) => console.log(err))

@@ -59,10 +59,11 @@ const LoginForm = () => {
 
             axios.post("/api/auth/login", inputData)
                 .then(res => {
-                    axios.get("/api/auth/user")
+                    axios.post("/api/auth/user", {user: res.data.user})
                         .then((res) => {
+                            window.localStorage.setItem("user", JSON.stringify(res.data.user))
                             if (res.data.token) {
-                                setAuthNewState({ token: res.data.token })
+                                setAuthNewState({ token: res.data.token, user: res.data.user })
                                 toast.success("شما با موفقیت وارد شدید!");
                                 setInputData({
                                     username: "",

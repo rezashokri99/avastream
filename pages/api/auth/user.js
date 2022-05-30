@@ -4,7 +4,8 @@ import { withIronSession } from "next-iron-session";
 
 function handler(req, res, session) {
     const token = req.session.get("token");
-    res.send({ token });
+    const { user } = req.body;
+    res.send({ token, user });
 }
 
 export default withIronSession(handler, {

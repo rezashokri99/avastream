@@ -4,17 +4,22 @@ import { AuthContext } from "../../../../../store/auth";
 import styles from "./userProfile.module.css";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Router from 'next/router';
 
 
 const UserProfile = ({ isOpenUserProfile, setIsOpenUserProfile }) => {
 
-    const { setAuthNewState, isAuthenticated } = useContext(AuthContext);
+    const { authState, setAuthNewState, isAuthenticated } = useContext(AuthContext);
 
     const logoutHandler = () => {
         setIsOpenUserProfile(false)
         axios.get("/api/auth/logout")
             .then((res) => {
                 setAuthNewState({})
+                localStorage.removeItem("user");
+                // //////////////////////
+                Router.reload(window.location.pathname);
+                // //////////////////////
                 toast.warning("شما از حساب کاربری خود خارج شدید!")
             })
             .catch((err) => console.log(err))
@@ -26,8 +31,8 @@ const UserProfile = ({ isOpenUserProfile, setIsOpenUserProfile }) => {
                 isAuthenticated() ?
                     <>
                         <li className={`${styles.btnHover} border-gray-300`}>
-                            <Link href="#">
-                                <a onClick={() => setIsOpenUserProfile(false)} className={`${styles.textHover} block w-full py-[15px] px-5 font-bold text-slate-333`}>تنظیمات حساب</a>
+                            <Link href={`/user/${authState.user?.username}`}>
+                                <a onClick={() => setIsOpenUserProfile(false)} className={`${styles.textHover} block w-full py-[15px] px-5 font-bold text-slate-333`}>پروفایل</a>
                             </Link>
                         </li>
                         <li className={`${styles.btnHover} border-t border-gray-300`}>
