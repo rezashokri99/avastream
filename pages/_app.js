@@ -41,11 +41,11 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <AuthProvider>
+      <ToastContainer rtl theme='dark' />
       {
         loaderStatus ?
           <Loader isFirst={isFirst} setIsFirst={setIsFirst} setLoaderStatus={setLoaderStatus} /> :
           <Layout customize={pageProps.customize} >
-            <ToastContainer rtl theme='dark' />
             <Component {...pageProps} />
           </Layout>
       }

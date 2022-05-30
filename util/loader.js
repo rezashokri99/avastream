@@ -3,10 +3,10 @@ import { AuthContext } from "../store/auth";
 
 const Loader = ({isFirst, setIsFirst , setLoaderStatus}) => {
   
-  const {isAuthenticated} = useContext(AuthContext)
+  const {fetchCompleted, isAuthenticated} = useContext(AuthContext);
   console.log(isAuthenticated());
   useEffect(() => {
-    if (isAuthenticated() && isFirst) {
+    if (isAuthenticated() && isFirst || (!isAuthenticated() && isFirst && fetchCompleted)) {
       setLoaderStatus(false)
       setIsFirst(false)
     }

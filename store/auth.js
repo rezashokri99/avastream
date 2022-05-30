@@ -5,15 +5,17 @@ import axios from "axios";
 
 const AuthContext = createContext()
 
-const AuthProvider = ({children}) => {
+const AuthProvider = ({ children }) => {
 
-    const [authState, setAuthState] = useState({})
+    const [authState, setAuthState] = useState({});
+    const [fetchCompleted, setFetchCompleted] = useState(false)
 
     useEffect(() => {
         axios.get("/api/auth/user")
             .then((res) => {
+                setFetchCompleted(true);
                 if (res.data.token) {
-                    setAuthState({token: res.data.token})
+                    setAuthState({ token: res.data.token });
                 }
             })
             .catch((err) => console.log(err))
@@ -23,18 +25,18 @@ const AuthProvider = ({children}) => {
     const isAuthenticated = () => {
         if (authState.token) {
             return true;
-        }else {
+        } else {
             return false;
         }
     }
 
 
-    return(
-        <AuthContext.Provider value={{authState, isAuthenticated, setAuthNewState: (value) => setAuthState(value) }}>
+    return (
+        <AuthContext.Provider value={{ authState, isAuthenticated, setAuthNewState: (value) => setAuthState(value), fetchCompleted }}>
             {children}
         </AuthContext.Provider>
     )
 }
 
 
-export {AuthProvider, AuthContext}
+export { AuthProvider, AuthContext }

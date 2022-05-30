@@ -6,11 +6,13 @@ import { toast } from "react-toastify";
 import styles from "./login.module.css";
 import { useContext } from "react";
 import { AuthContext } from "../../../store/auth";
+import { useRouter } from "next/router";
 
 
 const LoginForm = () => {
 
     const { setAuthNewState } = useContext(AuthContext);
+    const router = useRouter();
 
     // استیت مقادیر ورودی ها
     const [inputData, setInputData] = useState({
@@ -66,6 +68,7 @@ const LoginForm = () => {
                                     username: "",
                                     password: ""
                                 })
+                                router.push("/")
                             }
                         })
                         .catch((err) => console.log(err))
