@@ -55,15 +55,53 @@ const UserAuthentication = async ({ username, password }) => {
 }
 
 
-const getUserData = async({username}) =>{
+const getUserData = async ({ username }) => {
   const checkExistingUser = await User.findOne({ username });
-  const { email, created , role , sub , sub_time , profilePhoto} = checkExistingUser
-  return { username , email, created , role , sub , sub_time , profilePhoto}
+  const { email, created, role, sub, sub_time, profilePhoto } = checkExistingUser
+  return { username, email, created, role, sub, sub_time, profilePhoto }
 }
+
+
+const putUserData = async ({ username, password, past_password }) => {
+  
+  const findUser = await User.findOne({ username });
+  if (password) {
+    const checkPassword = await verifyPassword(
+      past_password,
+      findUser.password
+    );
+    if (checkPassword === true) {
+      const newPassword = await hashPassword(password);
+      const value = { password: newPassword };
+      const user = await User.findByIdAndUpdate(
+        findUser._id,
+        { ...value },
+        { new: true }
+      );
+      const userData = {
+        email: user.email,
+        username: username,
+        profilePhoto: user.profilePhoto,
+        sub: user.sub,
+        sub_time: user.sub_time,
+        role: user.role,
+        created: user.created,
+      };
+      return { user: userData, status: "SUCCESS" };
+    } else {
+      return { error: "رمز عبور وارد شده مطابقت ندارد!", status: "ERROR" };
+    }
+  } else {
+    return { error: "رمز عبور  به صورت صحیح وارد کنید!", status: "ERROR" };
+  }
+
+}
+
 
 
 module.exports = {
   CreateUser,
   UserAuthentication,
-  getUserData
+  getUserData,
+  putUserData
 };

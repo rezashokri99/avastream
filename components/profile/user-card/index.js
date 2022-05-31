@@ -1,13 +1,20 @@
-import { useState } from "react";
+import axios from "axios";
+import { useState, useContext } from "react";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../../store/auth";
 import styles from "./userCard.module.css";
+import Router from 'next/router';
 
 const UserCard = () => {
 
+    const { authState, setAuthNewState } = useContext(AuthContext);
+
+
     // استیت مقادیر ورودی ها
     const [inputData, setInputData] = useState({
-        currentPasswrod: "",
-        newPasswrod: ""
+        username: "",
+        past_password: "",
+        password: ""
     })
 
     // استیت اعتبارسنجی
@@ -17,7 +24,7 @@ const UserCard = () => {
             lessThanSixLetters: false,
             isOkey: false
         },
-        newPassword: {
+        password: {
             notEmpty: false,
             lessThanSixLetters: false,
             isOkey: false
@@ -33,7 +40,7 @@ const UserCard = () => {
             [name]: value
         })
     }
-    
+
     // اعتبارسنجی رمز عبور
     const passwordValidateHandler = (e) => {
         let value = e.target.value;
@@ -75,7 +82,7 @@ const UserCard = () => {
         if (value === "") {
             setInvalidate({
                 ...invalidate,
-                newPassword: {
+                password: {
                     notEmpty: true,
                     lessThanSixLetters: false,
                     isOkey: false
@@ -84,7 +91,7 @@ const UserCard = () => {
         } else if (value.length < 6) {
             setInvalidate({
                 ...invalidate,
-                newPassword: {
+                password: {
                     lessThanSixLetters: true,
                     notEmpty: false,
                     isOkey: false
@@ -93,7 +100,7 @@ const UserCard = () => {
         } else {
             setInvalidate({
                 ...invalidate,
-                newPassword: {
+                password: {
                     lessThanSixLetters: false,
                     notEmpty: false,
                     isOkey: true
@@ -106,13 +113,29 @@ const UserCard = () => {
     const submitHandler = (e) => {
         e.preventDefault();
 
-        if (inputData.currentPasswrod === "" || inputData.newPasswrod === "") {
+        if (inputData.past_password === "" || inputData.password === "") {
             toast.error("مقادیر رمز عبورهای وارد شده معتبر نمی باشند")
 
-        } else if (invalidate.password.lessThanSixLetters === true || invalidate.newPassword.lessThanSixLetters === true) {
+        } else if (invalidate.password.lessThanSixLetters === true || invalidate.password.lessThanSixLetters === true) {
             toast.error("مقادیر وارد شده معتبر نمی باشند")
         } else {
-            console.log(inputData);
+            const values = { ...inputData, username: authState.user.username }
+
+            axios.put("/api/user/update", { values })
+                .then(res => {
+                    setAuthNewState({ token: authState.token, user: res.data.user });
+                    toast.success("اطلاعات وارد شده با موفقیت تغییر پیدا کرد!");
+                    // //////////////////////
+                    Router.push("/");
+                    // //////////////////////
+                })
+                .catch(err => {
+                    if (err.response) {
+                        toast.error(err.response.data.error)
+                    } else {
+                        toast.error("مشکلی رخ داده است!")
+                    }
+                })
         }
 
     }
@@ -142,27 +165,27 @@ const UserCard = () => {
                     {/* پسورد فعلی */}
                     <div className="mb-7 flex flex-col lg:col-span-1">
                         <label className="mb-2">رمز عبور فعلی</label>
-                        <input onBlur={passwordValidateHandler} onChange={changeInputValueHandler} value={inputData.currentPasswrod} name="currentPasswrod" className={`${invalidate.password.notEmpty === true || invalidate.password.lessThanSixLetters === true ? "border-red-600" : invalidate.password.isOkey ? "border-sky-500" : "border-gray-border"} focus:bg-white focus:border-red-orginal text-gray-text text-sm font-medium py-[5px] text-left px-5 h-[50px] bg-transparent outline-none border`}  type="password" />
+                        <input onBlur={passwordValidateHandler} onChange={changeInputValueHandler} value={inputData.past_password} name="past_password" className={`${invalidate.password.notEmpty === true || invalidate.password.lessThanSixLetters === true ? "border-red-600" : invalidate.password.isOkey ? "border-sky-500" : "border-gray-border"} focus:bg-white focus:border-red-orginal text-gray-text text-sm font-medium py-[5px] text-left px-5 h-[50px] bg-transparent outline-none border`} type="password" />
                         <span className="text-red-600 text-sm">{invalidate.password.notEmpty === true ? "فیلد رمز عبور نباید خالی باشد." : invalidate.password.lessThanSixLetters === true ? "تعداد کلمات رمز عبور نباید از شش حرف کمتر باشه" : ""}</span>
                     </div>
 
                     {/* پسورد جدید */}
                     <div className="mb-7 flex flex-col lg:col-span-1">
                         <label className="mb-2">رمز عبور جدید</label>
-                        <input onBlur={newPasswordValidateHandler} onChange={changeInputValueHandler} value={inputData.newPasswrod} name="newPasswrod" className={`${invalidate.newPassword.notEmpty === true || invalidate.newPassword.lessThanSixLetters === true ? "border-red-600" : invalidate.newPassword.isOkey ? "border-sky-500" : "border-gray-border"} focus:bg-white focus:border-red-orginal text-gray-text text-sm font-medium py-[5px] text-left px-5 h-[50px] bg-transparent outline-none border`} type="password" />
-                        <span className="text-red-600 text-sm">{invalidate.newPassword.notEmpty === true ? "فیلد رمز عبور نباید خالی باشد." : invalidate.newPassword.lessThanSixLetters === true ? "تعداد کلمات رمز عبور نباید از شش حرف کمتر باشه" : ""}</span>
+                        <input onBlur={newPasswordValidateHandler} onChange={changeInputValueHandler} value={inputData.password} name="password" className={`${invalidate.password.notEmpty === true || invalidate.password.lessThanSixLetters === true ? "border-red-600" : invalidate.password.isOkey ? "border-sky-500" : "border-gray-border"} focus:bg-white focus:border-red-orginal text-gray-text text-sm font-medium py-[5px] text-left px-5 h-[50px] bg-transparent outline-none border`} type="password" />
+                        <span className="text-red-600 text-sm">{invalidate.password.notEmpty === true ? "فیلد رمز عبور نباید خالی باشد." : invalidate.password.lessThanSixLetters === true ? "تعداد کلمات رمز عبور نباید از شش حرف کمتر باشه" : ""}</span>
                     </div>
                 </div>
             </form>
 
             <div className="mb-4 flex">
-                
+
                 <button type="submit" onClick={submitHandler} className={`${styles.btnHover} w-20 py-[10px] px-5 md:px-[30px] h-[50px] bg-red-orginal text-white flex justify-center text-xl cursor-pointer `}>
                     <p className="z-10 flex items-center">
                         ذخیره
                     </p>
                 </button>
-                
+
                 <button className={`${styles.btnHover} w-20 mr-4 py-[10px] px-5 md:px-[30px] h-[50px] bg-red-orginal text-white flex justify-center text-xl cursor-pointer `}>
                     <p className="z-10 flex items-center">
                         لغو
