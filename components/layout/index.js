@@ -12,7 +12,7 @@ const Layout = ({ children, customize }) => {
         )
     }else {
         return (
-            <div>
+            <div className="bg-gray-dark ">
                 {/* header container */}
                 <HeaderContainer />
                 {children}

@@ -63,7 +63,7 @@ const getUserData = async ({ username }) => {
 
 
 const putUserData = async ({ username, password, past_password }) => {
-  
+
   const findUser = await User.findOne({ username });
   if (password) {
     const checkPassword = await verifyPassword(
@@ -98,10 +98,26 @@ const putUserData = async ({ username, password, past_password }) => {
 }
 
 
+const UsersCount = async () => {
+  const usersCount = await User.countDocuments()
+
+  return usersCount
+}
+
+
+const getUsers = async () => {
+  const users = await User.find({})
+
+  return users
+}
+
+
 
 module.exports = {
   CreateUser,
   UserAuthentication,
   getUserData,
-  putUserData
+  putUserData,
+  UsersCount,
+  getUsers
 };

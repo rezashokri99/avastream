@@ -1,5 +1,6 @@
 // global css
 import '../styles/globals.css';
+import 'antd/dist/antd.css';
 // Loader Styles
 import "../styles/loader.scss";
 // tailwind css

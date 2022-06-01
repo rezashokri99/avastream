@@ -9,8 +9,8 @@ const UserProfile = ({ username }) => {
     if(authState.user && authState.user.username === username){
         return ( 
             <div className="my-[50px] py-[50px] px-[15px] sm:w-[540px] sm:mx-auto md:w-[720px] lg:w-[960px] xl:w-[1140px] rtl text-right">
-                <UserInfo />
                 <UserCard />
+                <UserInfo />
             </div>
         );
 

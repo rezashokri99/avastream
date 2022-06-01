@@ -50,3 +50,17 @@ body {
 .Toastify__toast-body {
   font-family: iranyekan !important;
 }
+
+.ant-card-head {
+  border-bottom-color: #d8d8d8 !important;
+}
+
+.ant-card-body {
+  height: 70% !important;
+}
+
+.ant-card-head-title {
+  font-size: 20px;
+  /* color: #FFF; */
+  font-weight: bold;
+}
