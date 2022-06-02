@@ -20,7 +20,6 @@ const userSchema = new Schema({
 userSchema.set('toJSON', { gettes: true })
 userSchema.options.toJSON.transform = (doc, ret) => {
     const obj = { ...ret }
-    delete obj._id
     delete obj.__v
     return obj
 }

@@ -20,27 +20,27 @@ const HomeAdminComponent = () => {
 
     return (
         <div className={`${styles.site_card_border_less_wrapper} text-center rtl grid grid-cols-4 gap-y-4 md:gap-y-0 md:gap-x-2 xl:gap-x-6 items-center justify-center`}>
-            <Card className="col-span-4 md:col-span-2 xl:col-span-1" title="تعداد کاربران" bordered={true} style={{ backgroundColor: "#198754", width: "100%", height: "200px", borderRadius: "7px" }}>
+            <Card className="col-span-4 md:col-span-2 xl:col-span-1" title="تعداد کاربران" bordered={false} style={{ backgroundColor: "#198754", width: "100%", height: "200px", borderRadius: "7px" }}>
                 <div className="flex items-center justify-center">
                     <h2 className="mt-4 text-2xl font-bold w-36 border-b pb-1 text-white">{data.data.users} کاربر</h2>
                 </div>
             </Card>
 
-            <Card className="col-span-4 md:col-span-2 xl:col-span-1" title="تعداد فیلم ها" bordered={true} style={{ backgroundColor: "#dc3545", width: "100%", height: "200px", borderRadius: "7px" }}>
+            <Card className="col-span-4 md:col-span-2 xl:col-span-1" title="تعداد فیلم ها" bordered={false} style={{ backgroundColor: "#dc3545", width: "100%", height: "200px", borderRadius: "7px" }}>
                 <p>Card content</p>
                 <p>Card content</p>
                 <p>Card content</p>
                 <p>Card content</p>
             </Card>
 
-            <Card className="col-span-4 md:col-span-2 xl:col-span-1" title="در حال بروزرسانی..." bordered={true} style={{ backgroundColor: "#adb5bd", width: "100%", height: "200px", borderRadius: "7px" }}>
+            <Card className="col-span-4 md:col-span-2 xl:col-span-1" title="در حال بروزرسانی..." bordered={false} style={{ backgroundColor: "#adb5bd", width: "100%", height: "200px", borderRadius: "7px" }}>
                 <p>Card content</p>
                 <p>Card content</p>
                 <p>Card content</p>
                 <p>Card content</p>
             </Card>
 
-            <Card className="col-span-4 md:col-span-2 xl:col-span-1" title="درحال بروز رسانی..." bordered={true} style={{ backgroundColor: "#6610f2", width: "100%", height: "200px", borderRadius: "7px" }}>
+            <Card className="col-span-4 md:col-span-2 xl:col-span-1" title="درحال بروز رسانی..." bordered={false} style={{ backgroundColor: "#6610f2", width: "100%", height: "200px", borderRadius: "7px" }}>
                 <p>Card content</p>
                 <p>Card content</p>
                 <p>Card content</p>

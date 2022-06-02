@@ -30,11 +30,11 @@ export const AdminLayout = () => {
         <Layout className="rtl h-full overflow-scroll">
             <Sider collapsed={true} className="rtl">
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={["home"]}>
-                    {
-                        pages.map(page => <Menu.Item key={page.key} icon={page.icon} onClick={() => setActiveComponent(page.component)} >
-                            {page.name}
-                        </Menu.Item>)
-                    }
+                    {pages.map((item) => (
+                        <Menu.Item key={item.key} icon={item.icon} onClick={() => setActiveComponent(item.component)} >
+                            {item.name}
+                        </Menu.Item>
+                    ))}
                 </Menu>
             </Sider>
             <Layout className={`${styles.site_layout} rtl`}>

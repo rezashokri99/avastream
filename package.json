@@ -11,7 +11,7 @@
     "prod": "cross-env NODE_ENV=production postcss ./styles/tailwindcss/tailwind.css -o ./styles/tailwind.css"
   },
   "dependencies": {
-    "antd": "^4.20.7",
+    "antd": "^4.16.2",
     "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "cookie": "^0.5.0",

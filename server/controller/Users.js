@@ -105,12 +105,22 @@ const UsersCount = async () => {
 }
 
 
-const getUsers = async () => {
-  const users = await User.find({})
+const getUsers = async (params) => {
+  const usersCount = await UsersCount();
+  const page = parseInt(params.page);
+  const pageSize = parseInt(params.pageSize);
+  const users = await User.find({}).limit(pageSize).skip(page === 1 ? 0 : (page - 1) * pageSize)
 
-  return users
+  return { users, count: usersCount }
 }
 
+
+const putUser = async (value) => {
+  const { userId, values } = value;
+  const updateUser = await User.findByIdAndUpdate(userId, { ...values }, {new: true})
+  
+  return updateUser;
+}
 
 
 module.exports = {
@@ -119,5 +129,6 @@ module.exports = {
   getUserData,
   putUserData,
   UsersCount,
-  getUsers
+  getUsers,
+  putUser
 };
