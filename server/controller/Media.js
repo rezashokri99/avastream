@@ -36,6 +36,21 @@ const createMedia = async (req, res, next) => {
   }
 };
 
+
+const deleteMedia = async(id) => {
+  try{
+    console.log(id)
+    const deletedMedia = await Media.findByIdAndDelete(id)
+
+    return deletedMedia
+
+  }catch(err){
+    throw err
+  }
+}
+
+
 module.exports = {
   createMedia,
+  deleteMedia 
 };

@@ -1,29 +1,36 @@
 import React from "react";
-import { Button, Divider, Form, Input, InputNumber } from "antd";
-import moment from "moment-jalaali";
-import UploadComponent from "../../../upload";
+import { Form, Input, Button, InputNumber, Upload } from "antd";
 import axios from "axios";
-import styles from "./createFilm.module.css";
+import { toast } from "react-toastify";
+import UploadComponent from "../../../upload/index";
+import moment from "moment-jalaali";
+import styles from "./changeFilmData.module.css";
 
 
-const CreateMediaPage = () => {
+const ChangeFilmsDataModal = ({ filmData }) => {
 
-  const [form] = Form.useForm()
+  const [form] = Form.useForm();
 
   return (
-    <div className="w-full h-full px-10 max-h-full overflow-scroll">
-      <Divider className="border-t-gray-200 mt-4"><h2 className="text-4xl text-gray-200">ایجاد فیلم جدید</h2></Divider>
+    <div className="w-full rtl text-right">
       <Form
         form={form}
         layout="vertical"
         onFinish={(values) => {
           console.log(values);
-          axios.post("/api/admin/films/create", { values })
-            .then((res) => console.log(res))
-            .catch((err) => console.log(err))
+          axios.put("/api/admin/films/update", { values: { ...values, filmId: filmData._id } })
+            .then((res) => toast.success("تغییرات با موفقیت اعمال شد!"))
+            .catch((err) => toast.error("مشکلی رخ داده است!"))
         }}
-        onFinishFailed={err => {
-          console.log(err)
+        onFinishFailed={(err) => toast.error("لطفا مقادیر را به درستی وارد کنید!")}
+        initialValues={{
+          name: filmData.name,
+          content: filmData.content,
+          imdb_score: filmData.imdb_score,
+          date: filmData.date,
+          time: filmData.time,
+          poster: filmData.poster._id,
+          video: filmData.video
         }}
       >
         <Form.Item
@@ -49,7 +56,7 @@ const CreateMediaPage = () => {
         </Form.Item>
         <Form.Item
           label="امتیاز IMDB "
-          name="score"
+          name="imdb_score"
           rules={[
             { required: true, message: "امتیاز IMDB فیلم را وارد کنید!" },
           ]}
@@ -58,7 +65,7 @@ const CreateMediaPage = () => {
         </Form.Item>
         <Form.Item
           label="سال ساخت"
-          name="created"
+          name="date"
           rules={[{ required: true, message: "سال ساخت فیلم را وارد کنید!" }]}
         >
           <InputNumber
@@ -85,19 +92,18 @@ const CreateMediaPage = () => {
         <Form.Item
           className={`${styles.uploadLable} flex items-center justify-center `}
           label="بارگذاری فیلم"
-          name="film"
+          name="video"
           rules={[{ required: true, message: "فایل فیلم را بارگذاری کنید!" }]}
         >
-          <UploadComponent key="film" afterUpload={value => form.setFieldsValue({ film: value[0]._id })} />
+          <UploadComponent key="film" afterUpload={value => form.setFieldsValue({ video: value[0]._id })} />
         </Form.Item>
-        <Form.Item>
-          <Button className="w-1/2 text-white" block htmlType="submit" size="large">
-            ایجاد فیلم
-          </Button>
+
+        <Form.Item className="text-center">
+          <Button className="w-full" htmlType="submit">تغییر اطلاعات</Button>
         </Form.Item>
       </Form>
     </div>
   );
 };
 
-export default CreateMediaPage;
+export default ChangeFilmsDataModal;

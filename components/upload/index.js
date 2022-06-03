@@ -79,10 +79,11 @@ export default class UploadComponent extends React.Component {
     return (
       <>
         <Upload className='text-white flex flex-col items-center justify-center' {...props}>
-          <Button className='text-white' icon={<UploadOutlined />}>انتخاب فایل</Button>
+          <Button className='text-white bg-gray-dark' icon={<UploadOutlined />}>انتخاب فایل</Button>
         </Upload>
         <Button
-          type="primary"
+          className='text-blue-500'
+          type="default"
           onClick={this.handleUpload}
           disabled={fileList.length === 0 || fileList.length > 1 || uploadedMedia === true}
           loading={uploading}

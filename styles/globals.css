@@ -132,9 +132,9 @@ body {
   margin-top: 20px !important;
 }
 
-.ant-form-item-label>label {
+/* .ant-form-item-label>label {
   color: #FFF !important;
-}
+} */
 
 .ant-upload-list-item {
   color: #40a9ff !important;
@@ -158,4 +158,8 @@ body {
 .ant-divider-horizontal.ant-divider-with-text {
   border-top-color: gainsboro !important;
   color: gainsboro !important;
+}
+
+.ant-modal {
+  width: 70% !important;
 }

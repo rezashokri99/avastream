@@ -3,10 +3,10 @@ import { Badge, Button, Space, Table, Modal } from "antd";
 import useSWR from "swr";
 import axios from "axios";
 import { toast } from "react-toastify";
-import ChangeUserDataModal from "./ChangeUserData";
+import ChangeFilmsDataModal from "./ChangeFilmData";
 
 
-const UsersListAdminComponent = () => {
+const FilmsListAdminComponent = () => {
 
   const [pageSize, setPageSize] = useState(10);
   const [activePage, setActivePage] = useState(1);
@@ -14,11 +14,12 @@ const UsersListAdminComponent = () => {
   const [tableData, setTableData] = useState()
 
 
-  const { error } = useSWR("/api/admin/users", (url) =>
+  const { error } = useSWR("/api/admin/films", (url) =>
     axios
       .get(url, { params: { pageSize, page: activePage } })
       .then((res) => {
-        setTableData(res.data.users);
+        console.log(res.data);
+        setTableData(res.data.films);
         setCount(res.data.count);
       })
       .catch((err) => toast.error("دریافت اطلاعات با مشکل مواجه شده است!"))
@@ -26,9 +27,9 @@ const UsersListAdminComponent = () => {
 
   const handlePaginationChange = ({ page, pageSize }) => {
     axios
-      .get("/api/admin/users", { params: { pageSize, page } })
+      .get("/api/admin/films", { params: { pageSize, page } })
       .then((res) => {
-        setTableData(res.data.users);
+        setTableData(res.data.films);
         setCount(res.data.count);
       })
       .catch((err) => toast.error("دریافت اطلاعات با مشکل مواجه شده است!"))
@@ -38,35 +39,20 @@ const UsersListAdminComponent = () => {
 
   const columns = [
     {
-      title: "نام کاربری",
-      dataIndex: "username",
-      key: "username",
+      title: "نام فیلم",
+      dataIndex: "name",
+      key: "name",
       render: (text) => <a>{text}</a>,
     },
     {
-      title: "پست الکترونیکی",
-      dataIndex: "email",
-      key: "email",
+      title: "سال ساخت",
+      dataIndex: "date",
+      key: "date",
     },
     {
-      title: "نقش",
-      dataIndex: "role",
-      key: "role",
-    },
-    {
-      title: "وضعیت اشتراک",
-      key: "sub",
-      dataIndex: "sub",
-      render: (sub, record, index) => {
-        const text = sub === true ? "فعال" : "غیر فعال";
-        const status = sub === true ? "success" : "error"
-        return (
-          <React.Fragment>
-            <Badge status={status} />
-            <span className="ml-2">{text}</span>
-          </React.Fragment>
-        );
-      },
+      title: "امتیاز",
+      dataIndex: "score",
+      key: "score",
     },
     {
       title: "",
@@ -77,9 +63,9 @@ const UsersListAdminComponent = () => {
             type="text"
             style={{ color: "#40A9FF" }}
             onClick={() => Modal.info({
-              title: `تغییر اطلاعات  ${record.username}`,
-              content: <ChangeUserDataModal userData={record} />,
-              style: {direction: "rtl"},
+              title: `تغییر اطلاعات  ${record.name}`,
+              content: <ChangeFilmsDataModal filmData={record} />,
+              style: { direction: "rtl"},
               okText: "لغو",
               okType: "danger",
               onOk: () => console.log("object")
@@ -116,4 +102,4 @@ const UsersListAdminComponent = () => {
   );
 };
 
-export default UsersListAdminComponent;
+export default FilmsListAdminComponent;

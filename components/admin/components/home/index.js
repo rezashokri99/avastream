@@ -12,10 +12,10 @@ const HomeAdminComponent = () => {
     const {data  , error} = useSWR("/api/admin/home/count", axios)
     if(error){
       toast.error("دریافت اطلاعات با مشکل مواجه شد!")
-      return <div>مشکلی رخ داده است!</div>
+      return <div className="text-white">مشکلی رخ داده است!</div>
     }
     if(!data){
-      return <div>درحال بارگذاری...</div>
+      return <div className="text-white">درحال بارگذاری...</div>
     }
 
     return (
