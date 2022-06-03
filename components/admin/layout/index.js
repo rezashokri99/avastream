@@ -37,7 +37,7 @@ export const AdminLayout = () => {
                     ))}
                 </Menu>
             </Sider>
-            <Layout className={`${styles.site_layout} rtl`}>
+            <Layout className={`${styles.site_layout} rtl `}>
                 <Content
                     className={`${styles.site_layout_background} rtl text-right`}
                     style={{
