@@ -65,7 +65,7 @@ body {
 
 .ant-card-head-title {
   font-size: 20px;
-  /* color: #FFF; */
+  color: #FFF;
   font-weight: bold;
 }
 
@@ -161,5 +161,16 @@ body {
 }
 
 .ant-modal {
-  width: 70% !important;
+  width: 65% !important;
 }
+
+@media (max-width: 550px)  {
+  .ant-modal {
+    width: 90% !important;
+  }
+}
+
+.ant-empty-description {
+  color: #1890ff;
+}
+

@@ -1,15 +1,17 @@
 import HeaderSlider from "./headerSlider";
 import MainContent from "./mainConent"
 
-const Main = () => {
+const Main = ({ data }) => {
+
     return (
         <>
             {/* اسلایدر بالای ضفحه */}
             <HeaderSlider />
             {/* main content */}
-            <MainContent />
+            <MainContent data={data} />
         </>
     );
 }
- 
+
 export default Main;
+

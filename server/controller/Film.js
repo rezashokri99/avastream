@@ -36,7 +36,7 @@ const updateFilm = async (params) => {
   const findFilm = await Film.findById(filmId);
   // مرحله اول : حذف فیلم ویا عکس فعلی و جایگزینی آن
   const pastFilm = findFilm.video;
-  
+
   const pastPoster = findFilm.poster._id;
 
   if (pastFilm.toString() === video && pastPoster.toString() === poster) {
@@ -66,7 +66,7 @@ const updateFilm = async (params) => {
     pastFilm.toString() !== video &&
     pastPoster.toString() === poster
   ) {
-      
+
     const deleteVideo = await deleteMedia(pastFilm);
     if (deleteVideo._id) {
       const newFilm = await Film.findByIdAndUpdate(
@@ -96,9 +96,43 @@ const updateFilm = async (params) => {
 };
 
 
+const deleteFilm = async (id) => {
+  const film = await Film.findById(id)
+  const deletedPoster = await deleteMedia(film.poster._id)
+  const deletedVideo = await deleteMedia(film.video)
+  const deletedFilm = await Film.findByIdAndDelete(id)
+  if (deletedPoster._id && deletedVideo._id && deletedFilm._id) {
+    return { deletedFilm, deletedPoster, deletedVideo, status: 200 }
+  } else if (!deletedPoster._id || !deletedVideo._id || !deletedFilm._id) {
+    return { deletedFilm, deletedPoster, deletedVideo, status: 400, error: "فرآیند حذف بطور کامل صورت نگرفت!" }
+  } else {
+    return { deletedFilm, deletedPoster, deletedVideo, status: 200 }
+  }
+}
+
+
+const getSliders = async() => {
+  const popular_slider = await Film.find({}).sort("-score").limit(10)
+  // const popular_slider = await Film.find({} , null , {sort:{score:-1}})
+  
+  const topTen_slider = await Film.find({}).sort("-imdb_score").limit(10);
+
+  const featured_slider = await Film.find({}).sort("-imdb_score").limit(6);
+  const movies_slider = await Film.find({}).sort("-imdb_score").limit(6);
+  const series_slider = await Film.find({}).sort("-imdb_score").limit(6);
+  
+  // const old_slider = await Film.find({}).sort("date").limit(10)
+  // old:old_slider
+  return {popular:popular_slider , topTen:topTen_slider, featured: featured_slider, movies: movies_slider, series: series_slider }
+}
+
+
+
 module.exports = {
   createFilm,
   FilmsCount,
   getFilms,
-  updateFilm
+  updateFilm,
+  deleteFilm,
+  getSliders
 };

@@ -9,13 +9,13 @@ import axios from "axios";
 
 const HomeAdminComponent = () => {
 
-    const {data  , error} = useSWR("/api/admin/home/count", axios)
-    if(error){
-      toast.error("دریافت اطلاعات با مشکل مواجه شد!")
-      return <div className="text-white">مشکلی رخ داده است!</div>
+    const { data, error } = useSWR("/api/admin/home/count", axios)
+    if (error) {
+        toast.error("دریافت اطلاعات با مشکل مواجه شد!")
+        return <div className="text-white">مشکلی رخ داده است!</div>
     }
-    if(!data){
-      return <div className="text-white">درحال بارگذاری...</div>
+    if (!data) {
+        return <div className="text-white">درحال بارگذاری...</div>
     }
 
     return (
@@ -27,24 +27,21 @@ const HomeAdminComponent = () => {
             </Card>
 
             <Card className="col-span-4 md:col-span-2 xl:col-span-1" title="تعداد فیلم ها" bordered={false} style={{ backgroundColor: "#dc3545", width: "100%", height: "200px", borderRadius: "7px" }}>
-                <p>Card content</p>
-                <p>Card content</p>
-                <p>Card content</p>
-                <p>Card content</p>
+                <div className="flex items-center justify-center">
+                    <h2 className="mt-4 text-2xl font-bold w-36 border-b pb-1 text-white">{data.data.films} فیلم</h2>
+                </div>
             </Card>
 
             <Card className="col-span-4 md:col-span-2 xl:col-span-1" title="در حال بروزرسانی..." bordered={false} style={{ backgroundColor: "#adb5bd", width: "100%", height: "200px", borderRadius: "7px" }}>
-                <p>Card content</p>
-                <p>Card content</p>
-                <p>Card content</p>
-                <p>Card content</p>
+                <div className="flex items-center justify-center">
+                    <h2 className="mt-4 text-2xl font-bold w-36 border-b pb-1 text-white">...</h2>
+                </div>
             </Card>
 
             <Card className="col-span-4 md:col-span-2 xl:col-span-1" title="درحال بروز رسانی..." bordered={false} style={{ backgroundColor: "#6610f2", width: "100%", height: "200px", borderRadius: "7px" }}>
-                <p>Card content</p>
-                <p>Card content</p>
-                <p>Card content</p>
-                <p>Card content</p>
+                <div className="flex items-center justify-center">
+                    <h2 className="mt-4 text-2xl font-bold w-36 border-b pb-1 text-white">...</h2>
+                </div>
             </Card>
         </div>
     );

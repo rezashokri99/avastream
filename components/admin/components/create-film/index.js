@@ -4,6 +4,8 @@ import moment from "moment-jalaali";
 import UploadComponent from "../../../upload";
 import axios from "axios";
 import styles from "./createFilm.module.css";
+import { toast } from "react-toastify";
+import Router from 'next/router';
 
 
 const CreateMediaPage = () => {
@@ -19,8 +21,16 @@ const CreateMediaPage = () => {
         onFinish={(values) => {
           console.log(values);
           axios.post("/api/admin/films/create", { values })
-            .then((res) => console.log(res))
-            .catch((err) => console.log(err))
+            .then((res) => {
+              if (res.data._id) {
+                toast.success(`فیلم ${res.data.name} با موفقیت بارگزاری شد!`);
+                form.resetFields();
+              }
+            })
+            .catch((err) => {
+              toast.error("مشکلی رخ داده است!");
+              console.log(err);
+            });
         }}
         onFinishFailed={err => {
           console.log(err)

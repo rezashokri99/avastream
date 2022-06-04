@@ -4,17 +4,17 @@ import MainTabs from "../../moviesSlidersContainer/mainTabs/MainTabs";
 import PupularMovies from "../../moviesSlidersContainer/pupularMovies";
 import TopTenMovies from "../../moviesSlidersContainer/topTenMovies";
 
-const MainContent = () => {
+const MainContent = ({ data }) => {
 
     const [mainTabActive, setMainTabActive] = useState("featured");
     const [seriesTabActive, setSeriesTabActive] = useState("drama");
 
     return (
         <div className="pt-[50px]">
-            <MainTabs mainTabActive={mainTabActive} setMainTabActive={setMainTabActive} />
-            <PupularMovies nameTitle={"فیلم های محبوب"} />
-            <TopTenMovies nameTitle={"ده فیلم برتر"} />
-            <BestSeries seriesTabActive={seriesTabActive} setSeriesTabActive={setSeriesTabActive} />
+            <MainTabs data={data} mainTabActive={mainTabActive} setMainTabActive={setMainTabActive} />
+            <PupularMovies data={data.popular} nameTitle={"فیلم های محبوب"} />
+            <TopTenMovies data={data.topTen} nameTitle={"ده فیلم برتر"} />
+            <BestSeries data={data.series} seriesTabActive={seriesTabActive} setSeriesTabActive={setSeriesTabActive} />
         </div>
     );
 }

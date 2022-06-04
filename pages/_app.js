@@ -15,8 +15,12 @@ import { ToastContainer } from 'react-toastify';
 import { AuthContext, AuthProvider } from '../store/auth';
 import { useState, useContext, useEffect } from 'react';
 import Loader from '../util/loader';
-
 import Router from 'next/router';
+import axios from "axios";
+
+
+// Axios Config :
+axios.defaults.baseURL = "http://localhost:3000"
 
 
 function MyApp({ Component, pageProps }) {
