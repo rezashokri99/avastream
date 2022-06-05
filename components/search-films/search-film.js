@@ -16,7 +16,7 @@ function fetchFilms(value, callback) {
   currentValue = value;
 
   function fetch() {
-      axios.get("/api/admin/films/banner", {params: {text: value}})
+      axios.get("/api/admin/banners/create", {params: {text: value}})
         .then(res => {
           console.log(res);
           callback(res.data);
@@ -32,6 +32,7 @@ class SearchFilm extends React.Component {
   state = {
     data: [],
     value: undefined,
+    initialValue: this.props.initialValue ? this.props.initialValue : null
   };
 
   handleSearch = value => {
@@ -47,7 +48,8 @@ class SearchFilm extends React.Component {
   };
 
   render() {
-    const options = this.state.data.map(d => <Option value={d._id} key={d._id}>{d.name}</Option>);
+    const banner = this.props.initialValue;
+    const options = initialValue !== null ? <Option value={banner._id} key={banner._id}>{banner.name}</Option> : this.state.data.map(d => <Option value={d._id} key={d._id}>{d.name}</Option>);
     return (
       <Select
         showSearch

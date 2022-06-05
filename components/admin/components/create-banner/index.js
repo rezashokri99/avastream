@@ -5,7 +5,7 @@ import UploadComponent from "../../../upload";
 import axios from "axios";
 import styles from "./create-banner.module.css";
 import { toast } from "react-toastify";
-import SearchFilm from "./search-film";
+import SearchFilm from "../../../search-films/search-film";
 
 
 const CreateBannerPage = () => {
@@ -21,7 +21,7 @@ const CreateBannerPage = () => {
                 initialValues={{show: false}}
                 onFinish={(values) => {
                     console.log(values);
-                    axios.post("/api/admin/films/banner", { values })
+                    axios.post("/api/admin/banners/create", { values })
                         .then((res) => {
                             console.log(res);
                             // if (res.data._id) {
