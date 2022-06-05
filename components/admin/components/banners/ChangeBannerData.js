@@ -8,7 +8,6 @@ import styles from "./changeBannerData.module.css";
 import SearchFilm from "../../../search-films/search-film";
 
 const ChangeBannersDataModal = ({ bannerData }) => {
-
   const [form] = Form.useForm();
 
   return (
@@ -17,14 +16,30 @@ const ChangeBannersDataModal = ({ bannerData }) => {
         form={form}
         layout="vertical"
         onFinish={(values) => {
-          console.log(values);
-          axios.put("/api/admin/films/update", { values: { ...values, filmId: filmData._id } })
-            .then((res) => toast.success("تغییرات با موفقیت اعمال شد!"))
-            .catch((err) => toast.error("مشکلی رخ داده است!"))
+          console.log({...values, bannerId: bannerData._id});
+          axios.put("/api/admin/banners/update", {
+            values: { ...values, bannerId: bannerData._id },
+          })
+            .then((res) => {
+              // console.log(res);
+              // if (res.data._id) {
+                console.log(res);
+
+                toast.success("تغییرات با موفقیت اعمال شد!");
+              // } else {
+                // toast.error("اطلاعات تغییر یافته ثبت نشد!")
+              // }
+            })
+            .catch((err) => {
+              //   console.log(err)
+              toast.error("مشکلی رخ داده است!");
+            });
         }}
         onFinishFailed={(err) => toast.error("لطفا مقادیر را به درستی وارد کنید!")}
         initialValues={{
-          film: bannerData.film,
+          // //////////////////////////////////////////
+          film: bannerData.film._id,
+          // ////////////////////////////////////////// bannerData.film._id
           banner: bannerData.banner,
           show: bannerData.show,
         }}
@@ -34,7 +49,7 @@ const ChangeBannersDataModal = ({ bannerData }) => {
           name="film"
           rules={[{ required: true, message: " فیلم را وارد کنید!" }]}
         >
-          <SearchFilm initialValue= {bannerData.film} />
+          <SearchFilm initialValue={bannerData.film} getFilmID={film => form.setFieldsValue({film})} />
         </Form.Item>
 
         <Form.Item
@@ -43,15 +58,16 @@ const ChangeBannersDataModal = ({ bannerData }) => {
           name="banner"
           rules={[{ required: true, message: "پوستر بنر را بارگذاری کنید!" }]}
         >
-          <UploadComponent key="banner" img={true} afterUpload={value => form.setFieldsValue({ banner: value[0]._id })} />
+          <UploadComponent key="banner" img={true} afterUpload={value => form.setFieldsValue({ poster: value[0]._id })} />
         </Form.Item>
 
         <Form.Item
           className={`${styles.uploadLable} flex items-center justify-center `}
           label="وضعیت نمایش بنر"
           name="show"
+          valuePropName="checked"
         >
-          <Switch onchange={value => form.setFieldsValue({ show: value })} />
+          <Switch onChange={(value) => form.setFieldsValue({ show: value })} />
         </Form.Item>
 
 

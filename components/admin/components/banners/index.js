@@ -66,7 +66,7 @@ const BannersListAdminComponent = () => {
             type="text"
             style={{ color: "#40A9FF" }}
             onClick={() => Modal.info({
-              title: `تغییر اطلاعات  ${record.film.name}`,
+              title: `تغییر اطلاعات بنر فیلم   ${record.film.name}`,
               content: <ChangeBannersDataModal bannerData={record} />,
               style: { direction: "rtl" },
               okText: "لغو",
@@ -81,8 +81,8 @@ const BannersListAdminComponent = () => {
             type="text"
             style={{ color: "red" }}
             onClick={() => Modal.confirm({
-              title: `حذف فیلم  ${record.name}`,
-              content: <p>اگر از حذف فیلم اطمینان دارید روی حذف کلیک کنید.</p>,
+              title: `حذف بنر فیلم  ${record.film.name}`,
+              content: <p>اگر از حذف بنر اطمینان دارید روی حذف کلیک کنید.</p>,
               style: { direction: "rtl", display: "flex", alignItems: "center", justifyContent: "center" },
               okText: "حذف",
               okType: "danger",
@@ -90,11 +90,11 @@ const BannersListAdminComponent = () => {
               cancelButtonProps: "primary",
               okButtonProps: { className: "mr-3" },
               onOk: () => {
-                axios.delete("/api/admin/films/update", { params: { id: record._id } })
+                axios.delete("/api/admin/banners/update", { params: { bannerId: record._id } })
                   .then((res) => {
-                    if (res.data.deletedFilm._id) {
-                      toast.warning("فیلم مورد نظر با موفقیت حذف شد!")
-                    }
+                    // if (res.data.deletedFilm._id) {
+                      toast.warning("بنر مورد نظر با موفقیت حذف شد!")
+                    // }
                   })
                   .catch(err => {
                     toast.error("مشکلی رخ داده است!")
