@@ -44,7 +44,7 @@ const TopTenMovies = ({ nameTitle, data }) => {
                 {
                     data.map((film) => (
                         <SwiperSlide key={film._id} className={`${styles.slideContainer} select-none`}>
-                            <img className="h-[400px] w-full lg:w-[420px] xl:w-full xl:h-[600px]" src="\assets\images\movies/01.jpg" />
+                            <img src={`data: ${film.poster.media.data.contentType};base64,${new Buffer.from(film.poster.media.data.data).toString("base64")}`} className="h-[400px] w-full lg:w-[420px] xl:w-full xl:h-[600px]" alt="movie" />
                             <div className={`rtl absolute top-0 right-0 z-10 w-full lg:w-[420px] xl:w-full h-full pt-28 xl:pt-52 mr-0 text-white`}>
                                 <h2 className="mb-4 font-extrabold text-[25px] pr-[58px] sm:pr-[135px] md:pr-[190px] lg:pr-[75px] xl:pr-[180px] xl:text-[42px] ">{film.name}</h2>
 

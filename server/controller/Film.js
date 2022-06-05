@@ -111,21 +111,33 @@ const deleteFilm = async (id) => {
 }
 
 
-const getSliders = async() => {
+const getSliders = async () => {
   const popular_slider = await Film.find({}).sort("-score").limit(10)
   // const popular_slider = await Film.find({} , null , {sort:{score:-1}})
-  
+
   const topTen_slider = await Film.find({}).sort("-imdb_score").limit(10);
 
   const featured_slider = await Film.find({}).sort("-imdb_score").limit(6);
   const movies_slider = await Film.find({}).sort("-imdb_score").limit(6);
   const series_slider = await Film.find({}).sort("-imdb_score").limit(6);
-  
+
   // const old_slider = await Film.find({}).sort("date").limit(10)
   // old:old_slider
-  return {popular:popular_slider , topTen:topTen_slider, featured: featured_slider, movies: movies_slider, series: series_slider }
+  return { popular: popular_slider, topTen: topTen_slider, featured: featured_slider, movies: movies_slider, series: series_slider }
 }
 
+
+
+
+const searchFilms = async ({ text }) => {
+  console.log(text)
+  const search = await Film.aggregate([
+    { "$match": { "name": { "$regex": text, "$options": "i" } } },
+    { "$project": { "name": 1, "_id": 1 } }
+  ]);
+
+  return search;
+};
 
 
 module.exports = {
@@ -134,5 +146,6 @@ module.exports = {
   getFilms,
   updateFilm,
   deleteFilm,
-  getSliders
+  getSliders,
+  searchFilms
 };

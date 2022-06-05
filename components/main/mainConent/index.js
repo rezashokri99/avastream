@@ -6,6 +6,8 @@ import TopTenMovies from "../../moviesSlidersContainer/topTenMovies";
 
 const MainContent = ({ data }) => {
 
+    console.log(data);
+
     const [mainTabActive, setMainTabActive] = useState("featured");
     const [seriesTabActive, setSeriesTabActive] = useState("drama");
 

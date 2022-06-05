@@ -33,7 +33,7 @@ const BestSeries = ({ seriesTabActive, setSeriesTabActive, data }) => {
                             <div key={film._id} className="px-[15px]">
                                 <Link href={`/movies/${film._id}`}>
                                     <a className="-mb-[8px] w-full inline-block overflow-hidden relative">
-                                        <img className="hover:scale-110 transition ease-in-out duration-300 overflow-hidden " src="assets\images\latest-aditions/01.jpg" alt="movie" />
+                                        <img src={`data: ${film.poster.media.data.contentType};base64,${new Buffer.from(film.poster.media.data.data).toString("base64")}`} className="hover:scale-110 transition ease-in-out duration-300 overflow-hidden" alt="movie" />
                                     </a>
                                 </Link>
                                 <div>
