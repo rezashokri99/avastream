@@ -1,4 +1,5 @@
 const Film = require("../model/film");
+const Media = require("../model/media");
 const { deleteMedia } = require("./Media");
 
 
@@ -16,6 +17,13 @@ const FilmsCount = async () => {
 
   return filmsCount;
 };
+
+
+const getFilm = async ({ filmId }) => {
+  const film = await Film.findById(filmId);
+
+  return film;
+}
 
 
 const getFilms = async (params) => {
@@ -160,12 +168,27 @@ const searchFilms = async ({ text, type, }) => {
 };
 
 
+
+
+
+// video 
+const getVideo = async ({ videoId }) => {
+  const video = await Media.findById(videoId);
+
+  return video;
+}
+
+
+
+
 module.exports = {
   createFilm,
   FilmsCount,
   getFilms,
+  getFilm,
   updateFilm,
   deleteFilm,
   getSliders,
-  searchFilms
+  searchFilms,
+  getVideo
 };

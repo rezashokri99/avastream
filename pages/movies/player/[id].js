@@ -1,22 +1,26 @@
 
+import axios from "axios";
 import React from "react";
 import VideoPlayer from "../../../components/video-player";
 
 
-const PlayerPage = ({id}) => {
+const PlayerPage = ({video}) => {
+  console.log(video);
   return (
     <div className="">
-      <VideoPlayer />
+      <VideoPlayer video={video} />
     </div>
   );
 };
 
-export const getServerSideProps = (context) => {
-  const id = context.params.id;
+export const getServerSideProps = async (context) => {
+  const videoId = context.params.id;
+
+  const video = (await axios.get("/api/video", { params: { videoId } })).data;
 
   return {
     props: {
-      id,
+      video,
       customize:true
     },
   };

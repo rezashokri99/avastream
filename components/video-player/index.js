@@ -2,11 +2,13 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 import styels from "./video-player.module.css"
 
-const VideoPlayer = () => {
+const VideoPlayer = ({video}) => {
+    
+    const arrayBuffer = new Buffer.from(video.media.data.data).toString("base64");
     return ( 
         <div>
             <ReactPlayer 
-            url="/assets/player/film.mp4"
+            url={`data:video/mp4;base64,${arrayBuffer}`}
             controls
             width="100%"
             height="100vh"

@@ -73,6 +73,7 @@ const BestSeries = ({ seriesTabActive, setSeriesTabActive, data }) => {
                             </div>
                         ))
                     }
+                    
 
 
 

@@ -46,7 +46,10 @@ const TopTenMovies = ({ nameTitle, data }) => {
                         <SwiperSlide key={film._id} className={`${styles.slideContainer} select-none`}>
                             <img src={`data: ${film.poster.media.data.contentType};base64,${new Buffer.from(film.poster.media.data.data).toString("base64")}`} className="h-[400px] w-full lg:w-[420px] xl:w-full xl:h-[600px]" alt="movie" />
                             <div className={`rtl absolute top-0 right-0 z-10 w-full lg:w-[420px] xl:w-full h-full pt-28 xl:pt-52 mr-0 text-white`}>
-                                <h2 className="mb-4 font-extrabold text-[25px] pr-[58px] sm:pr-[135px] md:pr-[190px] lg:pr-[75px] xl:pr-[180px] xl:text-[42px] ">{film.name}</h2>
+                                <Link href={`/movies/${film._id}`}>
+                                    <h2 className=" cursor-pointer mb-4 font-extrabold text-[25px] pr-[58px] sm:pr-[135px] md:pr-[190px] lg:pr-[75px] xl:pr-[180px] xl:text-[42px] ">{film.name}</h2>
+                                </Link>
+
 
                                 <p className="mb-6 pr-4 w-[270px] sm:w-[350px] md:w-[400px] lg:w-[290px] text-right text-[13px] xl:w-[400px] xl:text-sm">{film.content}</p>
                                 <div className="flex pr-4">
@@ -71,7 +74,7 @@ const TopTenMovies = ({ nameTitle, data }) => {
                 }
 
 
-               
+
 
                 {/* 5 */}
                 {/* <SwiperSlide className={`${styles.slideContainer} select-none`}>
