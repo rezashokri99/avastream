@@ -1,0 +1,20 @@
+{
+    "categories": [
+        {
+            "text": "علمی تخیلی",
+            "value": "scifi"
+        },
+        {
+            "text": "اکشن",
+            "value": "action"
+        }, 
+        {
+            "text": "درام",
+            "value": "drama"
+        }, 
+        {
+            "text": "رمانتیک",
+            "value": "romantic"
+        }
+    ]
+}

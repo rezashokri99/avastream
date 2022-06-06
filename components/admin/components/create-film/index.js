@@ -1,12 +1,15 @@
 import React from "react";
-import { Button, Divider, Form, Input, InputNumber } from "antd";
+import { Button, Divider, Form, Input, InputNumber, Select } from "antd";
 import moment from "moment-jalaali";
 import UploadComponent from "../../../upload";
 import axios from "axios";
 import styles from "./createFilm.module.css";
 import { toast } from "react-toastify";
 import Router from 'next/router';
+import categories from '../../../../util/categories.json'
 
+
+const { Option } = Select;
 
 const CreateMediaPage = () => {
 
@@ -84,6 +87,19 @@ const CreateMediaPage = () => {
         >
           <InputNumber className="w-full" min={0} />
         </Form.Item>
+
+        <Form.Item
+          label="ژانر فیلم"
+          name="category"
+          rules={[{ required: true, message: "ژانر فیلم را وارد کنید!" }]}
+        >
+          <Select mode="tags">
+            {
+              categories.categories.map((category, index) => <Option key={index} value={category.value} >{category.text}</Option>)
+            }
+          </Select>
+        </Form.Item>
+
         <Form.Item
           className={`${styles.uploadLable} flex items-center justify-center `}
           label="بارگذاری پوستر فیلم"

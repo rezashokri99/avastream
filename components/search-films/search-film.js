@@ -16,7 +16,7 @@ function fetchFilms(value, callback) {
   currentValue = value;
 
   function fetch() {
-    axios.get("/api/admin/banners/create", { params: { text: value } })
+    axios.get("/api/admin/banners/create", { params: { text: value, type: "search" } })
       .then(res => {
         console.log(res);
         callback(res.data);

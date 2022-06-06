@@ -2,8 +2,10 @@ const Film = require("../model/film");
 const { deleteMedia } = require("./Media");
 
 
-const createFilm = async ({ name, content, score, poster, film, time, created, }) => {
-  const newFilm = await Film.create({ name, content, imdb_score: score, poster, video: film, time, date: created });
+const createFilm = async ({ name, content, score, poster, film, time, created, category }) => {
+  const newFilm = await Film.create({ name, content, imdb_score: score, poster, video: film, time, date: created, category });
+
+  console.log(newFilm);
 
   return newFilm;
 };
@@ -30,7 +32,7 @@ const getFilms = async (params) => {
 
 
 const updateFilm = async (params) => {
-  const { filmId, poster, video, name, content, imdb_score, date, time } =
+  const { filmId, poster, video, name, content, imdb_score, date, time, category } =
     params;
 
   const findFilm = await Film.findById(filmId);
@@ -42,7 +44,7 @@ const updateFilm = async (params) => {
   if (pastFilm.toString() === video && pastPoster.toString() === poster) {
     const newFilm = await Film.findByIdAndUpdate(
       filmId,
-      { name, content, imdb_score, date, time },
+      { name, content, imdb_score, date, time, category },
       { new: true }
     );
     // console.log(newFilm);
@@ -55,7 +57,7 @@ const updateFilm = async (params) => {
     if (deletePoster._id) {
       const newFilm = await Film.findByIdAndUpdate(
         filmId,
-        { poster, name, content, imdb_score, date, time },
+        { poster, name, content, imdb_score, date, time, category },
         { new: true }
       );
       return { newFilm, status: 200 };
@@ -71,7 +73,7 @@ const updateFilm = async (params) => {
     if (deleteVideo._id) {
       const newFilm = await Film.findByIdAndUpdate(
         filmId,
-        { video, name, content, imdb_score, date, time },
+        { video, name, content, imdb_score, date, time, category },
         { new: true }
       );
       return { newFilm, status: 200 };
@@ -85,7 +87,7 @@ const updateFilm = async (params) => {
     if (deletePoster._id && deleteVideo._id) {
       const newFilm = await Film.findByIdAndUpdate(
         filmId,
-        { video, poster, name, content, imdb_score, date, time },
+        { video, poster, name, content, imdb_score, date, time, category },
         { new: true }
       );
       return { newFilm, status: 200 };
@@ -129,14 +131,32 @@ const getSliders = async () => {
 
 
 
-const searchFilms = async ({ text }) => {
-  console.log(text)
-  const search = await Film.aggregate([
-    { "$match": { "name": { "$regex": text, "$options": "i" } } },
-    { "$project": { "name": 1, "_id": 1 } }
-  ]);
+const searchFilms = async ({ text, type, }) => {
 
-  return search;
+  if (type === "search") {
+    const search = await Film.aggregate([
+      { "$match": { "name": { "$regex": text, "$options": "i" } } },
+      { "$project": { "name": 1, "_id": 1 } }
+    ]);
+    return search;
+
+  } else if (type === "categories") {
+    const search = await Film.aggregate([
+      { $match: { category: text } },
+      { $project: { name: 1, _id: 1, poster: 1, category: 1 } },
+      {
+        $lookup: {
+          from: "media",
+          localField: "poster",
+          foreignField: "_id",
+          as: "poster",
+        },
+      },
+    ]);
+
+    return search;
+  }
+
 };
 
 

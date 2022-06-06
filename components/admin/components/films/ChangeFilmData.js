@@ -1,16 +1,19 @@
 import React from "react";
-import { Form, Input, Button, InputNumber, Upload } from "antd";
+import { Form, Input, Button, InputNumber, Upload, Select } from "antd";
 import axios from "axios";
 import { toast } from "react-toastify";
 import UploadComponent from "../../../upload/index";
 import moment from "moment-jalaali";
 import styles from "./changeFilmData.module.css";
+import categories from "../../../../util/categories.json";
 
+
+const { Option } = Select;
 
 const ChangeFilmsDataModal = ({ filmData }) => {
 
   const [form] = Form.useForm();
-
+  
   return (
     <div className="w-full rtl text-right">
       <Form
@@ -30,7 +33,8 @@ const ChangeFilmsDataModal = ({ filmData }) => {
           date: filmData.date,
           time: filmData.time,
           poster: filmData.poster._id,
-          video: filmData.video
+          video: filmData.video,
+          category: filmData.category
         }}
       >
         <Form.Item
@@ -81,6 +85,19 @@ const ChangeFilmsDataModal = ({ filmData }) => {
         >
           <InputNumber className="w-full" min={0} />
         </Form.Item>
+
+        <Form.Item
+          label="ژانر فیلم"
+          name="category"
+          rules={[{ required: true, message: "ژانر فیلم را وارد کنید!" }]}
+        >
+          <Select mode="tags">
+            {
+              categories.categories.map((category, index) => <Option key={index} value={category.value} >{category.text}</Option>)
+            }
+          </Select>
+        </Form.Item>
+
         <Form.Item
           className={`${styles.uploadLable} flex items-center justify-center `}
           label="بارگذاری پوستر فیلم"

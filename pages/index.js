@@ -2,7 +2,7 @@ import axios from "axios";
 import Head from "next/head";
 import Main from "../components/main";
 
-export default function Home({data}) {
+export default function Home({ data, films }) {
 
   return (
     <div>
@@ -13,7 +13,7 @@ export default function Home({data}) {
       </Head>
 
       {/* main container */}
-      <Main data={data} />
+      <Main data={data} films={films} />
 
     </div>
   )
@@ -21,12 +21,17 @@ export default function Home({data}) {
 
 export async function getServerSideProps(context) {
 
-  const data = (await axios.get("/api/films")).data
+  // sliders films
+  const data = (await axios.get("/api/films")).data;
+
+  // categories films
+  const getFilms = (await axios.get("/api/films/categories", { params: { type: "categories", text: "scifi" } })).data;
 
 
   return {
-      props: {
-          data
-      },
+    props: {
+      data,
+      films: getFilms
+    },
   };
 }

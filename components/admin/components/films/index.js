@@ -55,6 +55,16 @@ const FilmsListAdminComponent = () => {
       key: "score",
     },
     {
+      title: "ژانر",
+      dataIndex: "category",
+      key: "category",
+      render: (text) => text.map((film, index) => <span key={index}>{index >= 1 ? " ," + film  : film}</span>)
+      // text === "scifi" ? <p>علمی تخیلی</p> :
+      //   text === "documentary" ? <p>مستند</p> :
+      //     text === "animation" ? <p>انیمیشن</p> :
+      //       text === "action" ? <p>اکشن</p> : 
+    },
+    {
       title: "",
       key: "action",
       render: (text, record) => (

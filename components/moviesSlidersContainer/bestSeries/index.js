@@ -1,12 +1,27 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import styles from "./bestSeries.module.css";
+import categories from "../../../util/categories.json";
+import axios from "axios";
+import { useState } from "react";
+
 
 const BestSeries = ({ seriesTabActive, setSeriesTabActive, data }) => {
 
+    const [filmsData, setFilmsData] = useState(data)
     const clickOnseriesTabActiveHandler = (e, value) => {
         e.preventDefault();
-        setSeriesTabActive(value)
+
+        axios
+            .get("/api/films/categories", {
+                params: { type: "categories", text: value },
+            })
+            .then((res) => {
+                console.log(res.data);
+                setFilmsData(res.data);
+                setSeriesTabActive(value)
+            })
+            .catch((error) => console.log(err));
     }
 
     return (
@@ -20,20 +35,25 @@ const BestSeries = ({ seriesTabActive, setSeriesTabActive, data }) => {
 
             <div>
                 <ul className="mb-12 flex justify-center h-[37px] text-center text-white px-[15px]">
-                    <li><Link href="#"><a onClick={(e) => clickOnseriesTabActiveHandler(e, "drama")} className={`${seriesTabActive === "drama" ? "bg-red-orginal" : "hover:text-red-orginal"} transition ease-in-out duration-200 cursor-pointer text-white text-sm font-medium py-2 px-4`}>درام</a></Link></li>
-                    <li><Link href="#"><a onClick={(e) => clickOnseriesTabActiveHandler(e, "action")} className={`${seriesTabActive === "action" ? "bg-red-orginal" : "hover:text-red-orginal"} transition ease-in-out duration-200 cursor-pointer  text-white text-sm font-medium py-2 px-4`}>اکشن</a></Link></li>
-                    <li><Link href="#"><a onClick={(e) => clickOnseriesTabActiveHandler(e, "romantic")} className={`${seriesTabActive === "romantic" ? "bg-red-orginal" : "hover:text-red-orginal"} transition ease-in-out duration-200 cursor-pointer  text-white text-sm font-medium py-2 px-4`}>رمانتیک</a></Link></li>
+                    {
+                        categories.categories.map((category, index) => (
+                            <li key={index}><Link href="#"><a onClick={(e) => clickOnseriesTabActiveHandler(e, category.value)} className={`${seriesTabActive === category.value ? "bg-red-orginal" : "hover:text-red-orginal"} transition ease-in-out duration-200 cursor-pointer text-white text-sm font-medium py-2 px-4`}>{category.text}</a></Link></li>
+
+                        ))
+                    }
+                    {/* <li><Link href="#"><a onClick={(e) => clickOnseriesTabActiveHandler(e, "action")} className={`${seriesTabActive === "action" ? "bg-red-orginal" : "hover:text-red-orginal"} transition ease-in-out duration-200 cursor-pointer  text-white text-sm font-medium py-2 px-4`}>اکشن</a></Link></li>
+                    <li><Link href="#"><a onClick={(e) => clickOnseriesTabActiveHandler(e, "romantic")} className={`${seriesTabActive === "romantic" ? "bg-red-orginal" : "hover:text-red-orginal"} transition ease-in-out duration-200 cursor-pointer  text-white text-sm font-medium py-2 px-4`}>رمانتیک</a></Link></li> */}
                 </ul>
 
                 {/* tab content */}
                 <div className="rtl text-right grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-y-8 text-white">
 
                     {
-                        data.map((film) => (
+                        filmsData.map((film) => (
                             <div key={film._id} className="px-[15px]">
                                 <Link href={`/movies/${film._id}`}>
                                     <a className="-mb-[8px] w-full inline-block overflow-hidden relative">
-                                        <img src={`data: ${film.poster.media.data.contentType};base64,${new Buffer.from(film.poster.media.data.data).toString("base64")}`} className="hover:scale-110 transition ease-in-out duration-300 overflow-hidden" alt="movie" />
+                                        <img src={`data: ${film.poster[0].media.contentType};base64,${(film.poster[0].media.data)}`} className="hover:scale-110 transition ease-in-out duration-300 overflow-hidden" alt="movie" />
                                     </a>
                                 </Link>
                                 <div>
@@ -55,7 +75,7 @@ const BestSeries = ({ seriesTabActive, setSeriesTabActive, data }) => {
                     }
 
 
-                   
+
                     {/* 6 */}
                     {/* <div className="px-[15px]">
                         <Link href={`/movies/film`}>

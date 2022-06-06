@@ -16,6 +16,11 @@ const filmSchema = new Schema({
   poster: { type: Schema.Types.ObjectId, ref: "Media"  },
   video: { type: Schema.Types.ObjectId, ref: "Media"  },
   views: { type: Number, default: 0 },
+  category: { 
+    type: Array,
+    // enum: ["scifi", "documentary", "animation", "action"],
+    required: true,
+  },
   created: { type: Date, default: Date.now, required: true },
 });
 filmSchema.set("toJSON", { gettes: true });
